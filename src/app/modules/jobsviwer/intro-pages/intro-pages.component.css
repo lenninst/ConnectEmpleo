@@ -1,0 +1,25 @@
+.primarybtn {
+  @apply
+  bg-primarybt
+  text-txtprimarybt
+  p-2
+  rounded-md
+
+}
+
+.form_style {
+  @apply
+  flex
+  flex-col
+  items-center
+}
+
+.gradient_text {
+  @apply
+  bg-gradient-to-r
+  from-violet-500
+  to-indigo-400
+  inline-block
+  text-transparent
+  bg-clip-text
+}

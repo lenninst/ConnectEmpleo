@@ -1,0 +1,36 @@
+<nav class="sticky top-0 z-10 px-4  backdrop-filter backdrop-blur-lg
+            bg-opacity-30 p-2 border-b border-slate-800">
+  <div class=" flex w-full items-center justify-between text-white">
+    <div class="font-bold ">
+      ConnectEmpleo🌱
+    </div>
+    <div class="flex gap-4">
+      <a href="#inicio">Inicio</a>
+
+
+    </div>
+      <form class="form_style" (ngSubmit)="getJobs()">
+        <input class="input_style " type="text" [(ngModel)]="searchTerm" placeholder="Buscar un trabajo"
+          name="searchTerm">
+        <button type="submit">Buscar</button>
+      </form>
+
+
+    <button class="primarybtn h-10" routerLink="login">
+      Iniciar sesión
+    </button>
+  </div>
+</nav>
+
+<div class="flex flex-col text-white items-center">
+
+  RESULTADOS DE BUSQUEDA
+
+  @if (resultado.length === 0) {
+  <h2>No hay nada para mostrar</h2>
+  } @else {
+  <p>{{ resultado }}</p>
+  }
+
+
+</div>
