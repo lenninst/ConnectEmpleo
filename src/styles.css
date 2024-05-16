@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.primarybtn {
+  @apply
+  bg-primarybt
+  text-txtprimarybt
+  rounded-s
+  p-0.5
+}
+
+.card_lstyle {
+  @apply
+  bg-second
+  w-full
+  h-full
+  rounded-2xl
+  border
+  border-strokeline
+  text-white
+}
+
+.card_shadow {
+  @apply
+  shadow-[0_20px_50px_rgba(8,_112,_184,_0.3)]
+
+}
+
+.card_shadow2 {
+  @apply
+  shadow-[0_20px_50px_rgba(8,_146,_127,_0.3)]
+
+}
+
+.input_style{
+  @apply
+  bg-gray-50
+  border
+  border-strokeline
+  text-gray-900
+  text-sm
+  rounded-lg
+  focus:ring-blue-500
+  focus:border-blue-500
+  block w-full p-2.5
+  dark:bg-gray-700
+  dark:border-gray-600
+  dark:placeholder-gray-400
+  dark:text-white
+  dark:focus:ring-blue-500
+  dark:focus:border-blue-500
+}
