@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import { LoginComponent } from '../../authentication/login/login.component';
+import { FooterComponent } from '../../../shared/components/footer/footer.component';
 
 @Component({
   selector: 'app-intro-pages',
   standalone: true,
-  imports: [ RouterOutlet, LoginComponent, ReactiveFormsModule],
+  imports: [ RouterOutlet, LoginComponent, ReactiveFormsModule, FooterComponent],
   templateUrl: './intro-pages.component.html',
   styleUrl: './intro-pages.component.css'
 })

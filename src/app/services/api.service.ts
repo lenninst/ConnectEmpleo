@@ -1,34 +1,28 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import axios from 'axios';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { jobsResponse } from '../core/interfaces/jobs.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+   private apiUrl = 'https://jsearch.p.rapidapi.com/search';
+  private rapidapiKey = 'b2faab3e75msh927c4d45d2ce5a3p169810jsnad46a0253f38';
 
   constructor(private http: HttpClient) { }
 
-  async getJobs(searchTerm?: string) {
-    const options = {
-      method: 'GET',
-      url: 'https://jsearch.p.rapidapi.com/search',
-      params: {
-        query: searchTerm,
-        page: '1',
-        num_pages: '1'
-      },
-      headers: {
-        'X-RapidAPI-Key': 'b2faab3e75msh927c4d45d2ce5a3p169810jsnad46a0253f38',
-        'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
-      }
+  getJobs(query: string): Observable<jobsResponse> {
+    const headers = new HttpHeaders({
+      'X-Rapidapi-Key': this.rapidapiKey,
+      'X-Rapidapi-Host': 'jsearch.p.rapidapi.com'
+    });
+
+    const params = {
+      query: query,
+      page: '1',
+      num_pages: '1'
     };
 
-    try {
-      const response = await axios.request(options);
-      return response.data;
-    } catch (error: any) {
-      throw new Error(error.response.data);
-    }
-  }
-}
+    return this.http.get<jobsResponse>(this.apiUrl, { headers: headers, params: params });
+  }}

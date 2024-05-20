@@ -9,11 +9,12 @@
 
 
     </div>
-      <form class="form_style" (ngSubmit)="getJobs()">
-        <input class="input_style " type="text" [(ngModel)]="searchTerm" placeholder="Buscar un trabajo"
-          name="searchTerm">
-        <button type="submit">Buscar</button>
-      </form>
+    <form class="form_style" (submit)="search()">
+      <input class="input_style " type="text" [(ngModel)]="termino" placeholder="Buscar un trabajo" name="searchTerm">
+      <button type="submit">
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
 
 
     <button class="primarybtn h-10" routerLink="login">
@@ -24,13 +25,34 @@
 
 <div class="flex flex-col text-white items-center">
 
-  RESULTADOS DE BUSQUEDA
+  RESPUESTA AQUI
 
-  @if (resultado.length === 0) {
-  <h2>No hay nada para mostrar</h2>
-  } @else {
-  <p>{{ resultado }}</p>
+  @if (hayError){
+  <span>No se encontro resultados para {{termino}}</span>
+
   }
+
+
+
+  @if(!hayError) {
+  <div>
+    TABLA AQUI
+    @for(jobData of jobs; track jobData.job_id) {
+    <p>{{jobData.employer_name}}</p>
+
+    }
+  </div>
+  }
+
+  <!-- @if (resultado.length === 0) { -->
+  <!--   <h2>No hay nada para mostrar</h2> -->
+  <!-- } @else { -->
+  <!--     @for(job of resultado; track job.job_id){ -->
+  <!--         <p>{{job.employer_name}}</p> -->
+  <!--     } @empty { -->
+  <!--   <li> There are no items. </li> -->
+  <!-- } -->
+  <!-- } -->
 
 
 </div>

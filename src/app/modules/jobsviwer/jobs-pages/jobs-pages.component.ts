@@ -2,28 +2,48 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon'
+import { Datum, jobsResponse } from '../../../core/interfaces/jobs.interface';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-jobs-pages',
   standalone: true,
-  imports: [HttpClientModule, FormsModule],
+  imports: [HttpClientModule, FormsModule, MatIconModule, CommonModule],
   templateUrl: './jobs-pages.component.html',
   styleUrl: './jobs-pages.component.css'
 })
+
+
 export class JobsPagesComponent {
 
-  searchTerm: string = '';
-  resultado: any[] = [];
+  public searchTerm: string = '';
+  hayError: boolean = false;
+  public jobs : Datum[] = [];
+  termino: string = ""
 
-  constructor (private apiServices: ApiService) {}
+  constructor(private apiServices: ApiService) { }
 
-  async getJobs() {
-    try {
-      this.resultado = await this.apiServices.getJobs(this.searchTerm);
-      console.log(this.resultado);
-    } catch (error) {
-      console.error(error);
-    }
+  search() {
+    this.hayError = false;
+    console.log(this.termino)
+    this.apiServices.getJobs(this.termino)
+      .subscribe((jobs) => {
+        console.log(jobs);
+        this.jobs = jobs.data;
+
+        console.log("este es array jobs " + JSON.stringify(this.jobs, null,  2));
+
+
+
+      }, (err) => {
+        this.hayError = true;
+        console.log('Error');
+        console.info(err);
+          this.jobs = [];
+      });
   }
+
 
 }
