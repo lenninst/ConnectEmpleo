@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .primarybtn {
   @apply
   bg-primarybt
@@ -25,18 +24,16 @@
 .card_shadow {
   @apply
   shadow-[0_20px_50px_rgba(8,_112,_184,_0.3)]
-
 }
 
 .card_shadow2 {
   @apply
   shadow-[0_20px_50px_rgba(8,_146,_127,_0.3)]
-
 }
 
 .input_style{
   @apply
-  bg-gray-50
+  bg-secondbtn
   border
   border-strokeline
   text-gray-900
@@ -51,6 +48,18 @@
   dark:text-white
   dark:focus:ring-blue-500
   dark:focus:border-blue-500
+}
+
+.second_button_style {
+  @apply
+  bg-secondbtn
+  p-2
+  rounded-lg
+}
+
+.icons_style {
+  @apply
+  text-secondbtn
 }
 
 html, body { height: 100%; }

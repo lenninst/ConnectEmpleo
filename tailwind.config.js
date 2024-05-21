@@ -9,6 +9,7 @@ module.exports = {
         main: '#10151D', // Aquí defines el color root con su valor hexadecimal
         second: '#161e29',
         primarybt: '#A87FFB',
+        secondbtn: '#2e3c51',
         h1primary: '#F6F6F6',
         h2secondary: '#A7AEC3',
         txtprimarybt: '#191B29',
