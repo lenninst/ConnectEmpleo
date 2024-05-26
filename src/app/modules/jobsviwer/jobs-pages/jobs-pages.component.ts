@@ -20,7 +20,7 @@ export class JobsPagesComponent {
 
   public searchTerm: string = '';
   hayError: boolean = false;
-  public jobs : Datum[] = [];
+  public jobs: Datum[] = [];
   termino: string = ""
 
   constructor(private apiServices: ApiService) { }
@@ -33,15 +33,13 @@ export class JobsPagesComponent {
         console.log(jobs);
         this.jobs = jobs.data;
 
-        console.log("este es array jobs " + JSON.stringify(this.jobs, null,  2));
-
-
+        console.log("este es array jobs " + JSON.stringify(this.jobs, null, 2));
 
       }, (err) => {
         this.hayError = true;
         console.log('Error');
         console.info(err);
-          this.jobs = [];
+        this.jobs = [];
       });
   }
 

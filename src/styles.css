@@ -6,8 +6,8 @@
   @apply
   bg-primarybt
   text-txtprimarybt
-  rounded-s
-  p-0.5
+  rounded-lg
+  p-2
 }
 
 .card_lstyle {
@@ -33,7 +33,7 @@
 
 .input_style{
   @apply
-  bg-secondbtn
+  bg-bg_second
   border
   border-strokeline
   text-gray-900
@@ -60,6 +60,22 @@
 .icons_style {
   @apply
   text-secondbtn
+}
+
+.search_input {
+ @apply
+  text-center
+  w-36
+  bg-bg_second
+  border-none
+  p-2
+  border-strokeline
+  text-gray-900
+  text-sm
+  rounded-lg
+
+  md:w-72
+
 }
 
 html, body { height: 100%; }

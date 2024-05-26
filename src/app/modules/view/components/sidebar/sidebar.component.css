@@ -1,0 +1,30 @@
+.sidebar_item {
+  @apply
+  flex
+  items-center
+  mr-2
+}
+
+.sidebar_section {
+  @apply
+  flex
+  items-center
+  gap-4
+
+}
+
+.sidebar_text {
+  @apply
+  hidden
+  ml-2
+  md:block
+}
+
+.sidebar_content {
+  @apply
+  flex
+  justify-between
+  p-2 border
+  border-strokeline
+  rounded-lg
+}

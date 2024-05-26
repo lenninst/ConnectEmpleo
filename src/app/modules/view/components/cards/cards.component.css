@@ -1,0 +1,5 @@
+.card_style {
+  @apply
+  flex
+  flex-col
+}

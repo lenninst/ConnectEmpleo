@@ -11,7 +11,7 @@
       <a href="#nosotros">Nosotros</a>
       <a href="#contactos">Contactos</a>
     </div>
-    <button class="primarybtn" routerLink="login">
+    <button class="primarybtn"  [routerLink]="['/login']" >
       Iniciar sesión
     </button>
   </div>
@@ -29,7 +29,7 @@
         Encuentra el trabajo perfecto. Conecta con empresas líderes.
         Construye tu futuro
       </p>
-      <button (click)="goJobsviwer()" class="primarybtn mt-9 px-4">
+      <button [routerLink] = "['/jobsviwer']" class="primarybtn mt-9 px-4">
         Comenzar 🌚
       </button>
     </section>

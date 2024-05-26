@@ -7,18 +7,17 @@
     <div class="flex gap-4">
       <a href="#inicio">Inicio</a>
 
-
     </div>
     <form class="form_style" (submit)="search()">
-      <input class="input_style " type="text" [(ngModel)]="termino" placeholder="Buscar un trabajo" name="searchTerm">
+      <input class="input_style " type="text" (ngModel)="termino" placeholder="Buscar un trabajo" name="searchTerm">
       <button type="submit">
         <mat-icon>search</mat-icon>
       </button>
     </form>
 
 
-    <button class="primarybtn h-10" routerLink="login">
-      Iniciar sesión
+    <button class="primarybtn  " routerLink="login">
+      Iniciar Sesión
     </button>
   </div>
 </nav>
@@ -38,7 +37,7 @@
       <div class="card_lstyle p-4">
         <div class="flex">
           <div class="bg-green-100 w-14 h-14 rounded-lg">
-            <img [src]="jobData.employer_logo" alt="">
+            <img src="jobData.employer_logo" alt="">
           </div>
           <div class="flex flex-col ml-4">
             <h1 class="text-h1primary text-xl"> {{jobData.employer_name}} </h1>
@@ -51,7 +50,7 @@
 
         <div class="mt-4 text-paragraph1">
           <h2 class="text-xl">{{jobData.job_title}} </h2>
-          <p>{{jobData.job_description}}</p>
+          <p class="line-clamp-3 ">{{jobData.job_description}}</p>
           <p class="text-primarybt flex items-center mt-2">
             {{jobData.employer_website}}
             <mat-icon class="text-sm">north_east</mat-icon>
@@ -79,7 +78,7 @@
           <img src="chrome://branding/content/about-logo.png" alt="">
         </div>
         <div class="flex flex-col ml-4">
-          <h1 class="text-h1primary text-xl"> titulo de empresa </h1>
+          <h1 class="text-h2secondary text-xl"> titulo de empresa </h1>
           <div class="flex items-center gap-2 text-h2secondary">
             <mat-icon>location_on</mat-icon>
             Ubicacion
@@ -88,15 +87,24 @@
       </div>
 
       <div class="mt-4 text-paragraph1">
-        <h2 class="text-xl">Titulo de trabajo </h2>
-        <p>Descripcion de trabajo</p>
+        <h2 class=" text-xl">Titulo de trabajo </h2>
+        <p class="line-clamp-3 ">Descripcion de trabajo Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
+          consectetur cupidatat Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa
+          sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
+          Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident.
+          Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo
+          officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris
+          ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim.
+          Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis..
+        </p>
         <p class="text-primarybt flex items-center pt-2">
           Sitio web
           <mat-icon class="text-sm">north_east</mat-icon>
         </p>
       </div>
 
-      <div class="flex justify-end gap-4 items-center">
+
+      <div class="flex justify-end gap-4 items-center ">
         <mat-icon class="icons_style">favorite</mat-icon>
         <button class="second_button_style" type=""> Postular </button>
       </div>

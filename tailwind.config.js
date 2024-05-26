@@ -1,7 +1,7 @@
 module.exports = {
   /** @type {import('tailwindcss').Config} */
   content: [
-    "./src/**/*.{html,ts}",
+    "./src/**/*.{html,ts,css}",
   ],
   theme: {
     extend: {
@@ -14,7 +14,8 @@ module.exports = {
         h2secondary: '#A7AEC3',
         txtprimarybt: '#191B29',
         strokeline: '#2E3C51',
-        paragraph1: '#808A97'
+        paragraph1: '#808A97',
+        bg_second: '#171F2B',
       },
     },
   },

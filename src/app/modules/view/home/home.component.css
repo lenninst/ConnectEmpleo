@@ -1,0 +1,6 @@
+.components_content {
+  @apply
+  mx-4
+  h-5/6
+  text-white
+}
