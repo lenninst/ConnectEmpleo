@@ -1,4 +1,41 @@
 <div class="card_style">
+  <div class="flex gap-2 items-center my-2 md:w-1/2">
+    <div class="bg-red-700 w-10 h-10 rounded-lg">
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <h1>Nombre de empresa</h1>
+      <span class="flex items-center gap-2">
+        <fa-icon [icon]=faLocationDot></fa-icon>
+        Ubicacion
+      </span>
+
+    </div>
+  </div>
+
+  <div class=" ">
+    <div class="flex gap-4 mb-2">
+      <a routerLink="details">Detalles</a>
+      <a routerLink="requirements">Requisitos</a>
+    </div>
+
+    <div
+      class="bg-bg_second rounded-lg p-2 md:w-full md:max-w-full h-56 min-h-56 max-h-56 overflow-y-auto">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+  <div class="flex justify-between mt-2">
+    <a href="" class="text-primarybt">Sitio Web
+      <mat-icon class="text-2xl">north_east</mat-icon>
+    </a>
+    <button class="primarybtn" type="">Postular</button>
+  </div>
+
+</div>
+
+<div class="card_style">
   <div class="flex gap-2 items-center my-2">
     <div class="bg-red-700 w-10 h-10 rounded-lg">
     </div>
@@ -13,21 +50,17 @@
     </div>
   </div>
 
-  <div>
+  <div class=" ">
     <div class="flex gap-4 mb-2">
-      <span>Detalle</span>
-      <span>Requisitos</span>
+      <a routerLink="details">Detalles</a>
+      <a routerLink="requirements">Requisitos</a>
     </div>
 
-    <div class="bg-bg_second rounded-lg p-2">
-      <p>Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem
-        pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud
-        ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut
-        officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris
-        cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia
-        eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat
-        ullamco ut ea consectetur et est culpa et culpa duis.</p>
+    <div
+      class="bg-bg_second rounded-lg p-2  md:w-full md:max-w-full h-56 min-h-56 max-h-56 overflow-y-auto">
+      <router-outlet></router-outlet>
     </div>
+
   </div>
 
   <div class="flex justify-between mt-2">

@@ -1,5 +1,8 @@
 .card_style {
   @apply
+  w-screen
+  p-4
   flex
   flex-col
+  justify-center
 }
