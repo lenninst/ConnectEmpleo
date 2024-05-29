@@ -35,7 +35,11 @@ export const routes: Routes = [
       },
       {
         path: 'saved', component: SavedComponent,
-      }
+      },
+      {
+        path: 'help',
+        loadComponent: () => import('../../shared/pageShared/help-page/help-page.component').then(c => c.HelpPageComponent)
+      },
 
     ]
   },

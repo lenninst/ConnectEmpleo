@@ -1,17 +1,17 @@
 <div class="sidebar_content mt-2">
   <div class="sidebar_section">
 
-    <a class="sidebar_item" routerLink="recommendations">
+    <a class="sidebar_item" routerLink="recommendations" routerLinkActive="active">
       <fa-icon [icon]=faHouse></fa-icon>
       <span class="sidebar_text">
         Inicio
       </span>
     </a>
-    <a class="sidebar_item" routerLink="choice">
+    <a class="sidebar_item" routerLink="choice" routerLinkActive="active">
       <fa-icon [icon]=faFolderMinus></fa-icon>
       <span class="sidebar_text">Postulaciones</span>
     </a>
-    <a class="sidebar_item" routerLink="saved">
+    <a class="sidebar_item" routerLink="saved" routerLinkActive="active">
       <fa-icon [icon]=faHeart></fa-icon>
       <span class="sidebar_text">Guardados</span>
     </a>
@@ -19,7 +19,7 @@
 
   </div>
   <div>
-    <a class="sidebar_item" href="">
+    <a class="sidebar_item" routerLink="help" routerLinkActive="active" >
       <fa-icon [icon]=faCircleInfo></fa-icon>
       <span class="sidebar_text">Ayuda</span>
     </a>

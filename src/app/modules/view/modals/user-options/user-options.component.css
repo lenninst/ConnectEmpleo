@@ -1,0 +1,13 @@
+.user_modal_content {
+  @apply
+  size-52 
+  rounded-lg 
+  gap-2 
+  p-2 
+  bg-opacity-90 
+  backdrop-blur-lg 
+  border
+  border-strokeline 
+  text-h1primary
+
+}

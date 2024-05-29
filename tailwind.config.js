@@ -16,6 +16,7 @@ module.exports = {
         strokeline: '#2E3C51',
         paragraph1: '#808A97',
         bg_second: '#171F2B',
+        primaryh1help: '#ac8ee9',
       },
     },
   },

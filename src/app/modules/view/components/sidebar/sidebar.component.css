@@ -3,6 +3,7 @@
   flex
   items-center
   mr-2
+  px-2
 }
 
 .sidebar_section {
@@ -29,4 +30,12 @@
   rounded-lg
 
   text-h2secondary
+}
+
+.active {
+  @apply
+  bg-secondbtn
+  rounded-lg
+  text-primaryh1help
+
 }

@@ -1,7 +1,8 @@
-<div
-  class="user_modal_content size-52 rounded-lg gap-2 p-2 bg-opacity-50 backdrop-blur-sm border border-strokeline text-h1primary">
-
-  <div class="flex flex-col gap-4">
+<div class="user_modal_content ">
+  <button class="" (click)="onClose()">
+    <fa-icon [icon]="faX"></fa-icon>
+  </button>
+  <div class="flex flex-col gap-4 ml-4">
     <div>
 
     </div>
@@ -9,5 +10,4 @@
     <a href="">Configuracion</a>
     <a href="">Cerrar Session</a>
   </div>
-  <button (click)="onClose()">cerrar</button>
 </div>

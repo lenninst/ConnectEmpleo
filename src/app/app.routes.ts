@@ -21,6 +21,7 @@ export const routes: Routes = [
     path: "user",
     loadChildren: () => import('./modules/view/view.route').then(h => h.viewRouting),
   },
+
   { path: "**", redirectTo: '' },
 ];
 

@@ -1,0 +1,44 @@
+.post_preview ::ng-deep h1 {
+  color: var(--primaryh1-color);
+  margin-bottom: 10px;
+    font-weight: 500;
+  @apply text-4xl
+
+}
+
+.post_preview ::ng-deep h2 {
+  color: var(--primaryh1-color);
+    margin-bottom: 10px;
+  font-weight: 400;
+  @apply text-3xl
+}
+
+.post_preview ::ng-deep h3 {
+  color: var(--primaryh1-color);
+  font-weight: 400;
+  @apply text-2xl
+}
+
+.post_preview ::ng-deep pre {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow-x: auto;
+  font-family: monospace;
+  border-radius: 10px;
+
+}
+
+.post_preview ::ng-deep {
+  color: var(--mdh2-color);
+  margin-bottom: 20px;
+}
+
+.post_preview ::ng-deep p {
+  margin-bottom: 20px;
+}
+
+.post_preview ::ng-deep ul {
+  margin-left: 30px;
+  list-style-type: disc;
+}
