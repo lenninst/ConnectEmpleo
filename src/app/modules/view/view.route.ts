@@ -3,43 +3,54 @@ import { CardsComponent } from "./components/cards/cards.component";
 import { NgModule } from "@angular/core";
 
 
-import { HomeComponent } from "./home/home.component";
 import { DetailsComponent } from "./components/cards/details/details.component";
 import { RequirementsComponent } from "./components/cards/requirements/requirements.component";
 import { SavedComponent } from "./components/saved/saved.component";
 import { ChoiceComponent } from "./components/choice/choice.component";
+import { MainViewComponent } from "./main-view.component";
+import { UsersViewComponent } from "./usersProfile/users-view.component";
 
 export const routes: Routes = [
   {
-    path: '', component: HomeComponent,
+    path: '', component: MainViewComponent,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'mainview' },
+
       {
-        path: '', pathMatch: 'full', redirectTo: 'recommendations'
+        path: 'mainview',
+        loadComponent: () => import('./home/home.component').then(c => c.HomeComponent),
+        children: [
+          { path: '', pathMatch: 'full', redirectTo: 'recommendations' },
+          {
+            path: 'recommendations', component: CardsComponent,
+            children: [
+              { path: '', pathMatch: 'full', redirectTo: 'details' },
+              { path: 'details', component: DetailsComponent },
+              { path: 'requirements', component: RequirementsComponent },
+            ]
+          },
+          { path: 'choice', component: ChoiceComponent, },
+          { path: 'saved', component: SavedComponent, },
+          {
+            path: 'help',
+            loadComponent: () => import('../../shared/pageShared/help-page/help-page.component').then(c => c.HelpPageComponent)
+          },
+        ],
       },
       {
-        path: 'recommendations', component: CardsComponent,
+        path: 'userProfile',
+        component: UsersViewComponent,
         children: [
-          {
-            path: '', pathMatch: 'full', redirectTo: 'details'
+          {path: 'candidateProfile',
+            loadComponent: () => import('./usersProfile/candidate/candidate-profile/candidate-profile.component').then(c=>c.CandidateProfileComponent)
           },
-          {
-            path: 'details', component: DetailsComponent
-          },
-          {
-            path: 'requirements', component: RequirementsComponent
+
+          {path: 'recruiterProfile',
+            loadComponent: () => import('./usersProfile/recruiter/recruiter.component').then(c=>c.RecruiterComponent)
           },
         ]
-      },
-      {
-        path: 'choice', component: ChoiceComponent,
-      },
-      {
-        path: 'saved', component: SavedComponent,
-      },
-      {
-        path: 'help',
-        loadComponent: () => import('../../shared/pageShared/help-page/help-page.component').then(c => c.HelpPageComponent)
-      },
+      }
+
 
     ]
   },
