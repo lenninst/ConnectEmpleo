@@ -1,24 +1,66 @@
 <div class="mx-4">
-  <section class="flex flex-col gap-2 items-center">
+  <section class="flex flex-col gap-2 items-center mb-2">
     <div class="w-full flex justify-between items-start">
       <div>
         <button class="primarybtn" (click)="goBack()"> Regresar</button>
       </div>
-      <img class="bg-red-400 size-52 rounded-full" [src]="[url]">
+      <img class="bg-second size-52 rounded-full" [src]="[User.perfilUrl]">
       <div>
-        <a class="secondbtn" >Guardar</a>
+        <a class="secondbtn">Guardar</a>
       </div>
     </div>
-    <h1 class="text-lg">{{userName}}</h1>
+    <div class="text-lg flex gap-2">
+      <h1>
+        {{User.nombre | capitalize}}
+      </h1>
+      <button (click)="openEditModal()">
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+    </div>
+
   </section>
 
-  <section class="flex justify-center">
-    <div class="w-5/6 grid  grid-rows-2 md:grid-cols-2 bg-slate-800 ">
+  @if(showUserEditModal){
+  <app-profile-edit-modal (closeUserEditModal)=closeUserEditModal()
+    class="fixed inset-0 z-50 flex items-center justify-center edit_modal_content">
 
+  </app-profile-edit-modal>
+  }
+
+  <section class="flex flex-col items-center justify-center">
+    <div class="w-5/6 grid  grid-rows-2 md:grid-cols-2 gap-2 h-80 md:h-32 ">
       <app-personal-information></app-personal-information>
       <app-contact-information></app-contact-information>
+    </div>
+    <div class="mt-3 w-full">
+        <hr class="w-full h_divider">
+      <div class="flex justify-between items-end mb-4 ">
+        <h1 class="font-semibold text-2xl"> Formación académica </h1>
+        <button class="">
+          <fa-icon [icon]="faPlus" class="iconbtn"></fa-icon>
+        </button>
+      </div>
+      <app-academic-edu></app-academic-edu>
+    </div>
+    <div class="mt-3 w-full">
+      <hr class="w-full h_divider">
+      <div class="flex justify-between items-end mb-4">
+        <h1 class="font-semibold text-2xl">Experiencia laboral</h1>
+        <button class="">
+          <fa-icon [icon]="faPlus" class="iconbtn"></fa-icon>
+        </button>
+      </div>
+      <app-work-experience></app-work-experience>
 
     </div>
 
   </section>
+
 </div>
+
+ @if(showUserEditModal){
+  <app-profile-edit-modal (closeUserEditModal)=closeUserEditModal()
+    class="fixed inset-0 z-50 flex items-center justify-center edit_modal_content">
+
+  </app-profile-edit-modal>
+  }

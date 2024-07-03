@@ -92,5 +92,28 @@
 
 }
 
+.h_divider {
+  @apply
+  my-7
+  h-px
+  border-t-0
+  bg-transparent
+  bg-gradient-to-r
+  from-transparent
+  via-neutral-500
+  to-transparent
+  opacity-25
+  z-10
+}
+
+.iconbtn {
+  @apply
+  border
+  bg-second
+  border-strokeline
+  rounded-lg
+  p-2
+
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

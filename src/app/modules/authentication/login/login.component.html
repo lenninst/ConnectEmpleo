@@ -7,11 +7,18 @@
         <input class="input_style" type="email" name="" value="" placeholder="Email">
         <input class="input_style" type="password" name="" value="" placeholder="Contraseña">
 
+        <a href="" class="text-primaryh1help">Recuperar contraseña</a>
+
         <button (click)="gotoMain()" type="submit">
-          <mat-icon>arrow_forward</mat-icon>
-        </button>
+          <mat-icon>arrow_forward</mat-icon> </button>
       </form>
     </div>
 
   </div>
+  <section class="mt-12">
+    No  tienes  una cuenta?
+    <a [routerLink]="['/register']" class="text-primaryh1help hover:text-primarybt ">
+      Crear cuenta
+    </a>
+  </section>
 </div>

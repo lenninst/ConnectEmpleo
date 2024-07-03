@@ -1,7 +1,19 @@
-<div class="flex flex-col ">
-  <span>Nacionalidad:</span>{{nacionalidad}}
-  <span>Fecha de nacimiento</span>
-  <span>Género</span>
-  <span>Documento id</span>
+<div class="data_info_content flex flex-col bg-second rounded-lg p-4 h-32">
+  <span>
+    <strong>Nacionalidad: </strong>
+    {{User.nacionalidad}}
+  </span>
 
+  <span>
+    <strong>Fecha de nacimiento: </strong>
+    {{User.fechaDeNacimiento}}
+  </span>
+  <span>
+    <strong>Género: </strong>
+    {{User.genero}}
+  </span>
+  <span>
+    <strong>Documento id: </strong>
+    {{User.documento}}
+  </span>
 </div>

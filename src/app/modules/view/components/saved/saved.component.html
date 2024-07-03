@@ -1,24 +1,29 @@
 <div class="w-screen h-full px-4">
+
+  @for (saved of user.favoritos; track user.favoritos ){
   <div class=" w-full flex flex-col gap-4 justify-center items-center bg-bg_second p-3 rounded-lg mb-4 ">
-
-    <div class="w-full flex border-b py-2 border-slate-800">
+    <div class="w-full flex border-b py-2 border-slate-800 ">
       <div class=" min-w-max max-w-max flex flex-col py-2 ">
-        <h2>Nombre empresa</h2>
-        <h1 class="text-h1primary font-semibold"> Nombre empleo Lorem ipsum dolor sit amet, qui minim labore .</h1>
+        <h2>{{saved.empresa}}</h2>
+        <h1 class="text-h1primary font-semibold"> {{saved.puesto}}</h1>
+        <p>{{saved.descripcion}}</p>
       </div>
-
       <!-- <fa-icon [icon]="faEllipsis"></fa-icon> -->
     </div>
 
-
     <div class="w-full flex justify-between ">
-      <h1 class="mr-3">
-        <!-- <fa-icon [icon]="faMugHot"></fa-icon> -->
-        En espera
-      </h1>
-      <button type="">Eliminar</button>
+      <button type="">Detalles</button>
+      <div class="flex gap-4">
+        <button class="iconbtn" type="">
+          <fa-icon [icon]=faHeartCrack></fa-icon>
+          Eliminar
+        </button>
+        <button class="primarybtn" type="">Postular</button>
+      </div>
     </div>
 
   </div>
+  }
+
 
 </div>

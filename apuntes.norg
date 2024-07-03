@@ -1,0 +1,29 @@
+* Datos de candidatos /postulantes/
+  - id
+  - nombre
+  - apellido
+  - edad
+  - email
+  - telefono
+  - direccion
+  - ciudad
+* datos de oferta de empleo
+  - id
+  - titulo
+  - descripcion
+  - salario
+  - ubicacion
+  - fecha
+  - empresa
+  - remoto
+  - /postulantes/
+
+** educacion academica
+  - id
+  - titulo
+  - institucion
+  - fecha_inicio
+  - fecha_fin
+  - descripcion
+
+

@@ -1,1 +1,37 @@
-<p>register works!</p>
+<div class="text-white w-screen h-screen flex flex-col justify-center items-center">
+  <div class="text-center">
+    <h1 class="font-semibold text-3xl ">Crear cuenta</h1>
+
+    <div class="w-74 mt-10">
+      <form class="flex flex-col gap-4">
+        <input class="input_style" type="text" name="" value="" placeholder="Nombre de usuario">
+        <input class="input_style" type="email" name="" value="" placeholder="Email">
+        <input class="input_style" type="password" name="" value="" placeholder="Contraseña">
+        <div class="mb-3">
+
+          <label class="inline-flex items-center">
+            <input class="" type="checkbox" [(ngModel)]="termsAccepted" name="" value="" placeholder="Contraseña">
+            <span class="ml-1">
+              Acepto los
+              <a class="text-primarybt">
+                términos y condiciones
+              </a>
+            </span>
+          </label>
+
+
+        </div>
+        <button (click)="gotoMain()" class="primarybtn" type="submit">
+          Crear
+        </button>
+      </form>
+    </div>
+
+  </div>
+  <section class="mt-12">
+    Ya tienes una cuenta?
+    <a [routerLink]="['/login']" class="text-primaryh1help hover:text-primarybt ">
+      Iniciar sesión
+    </a>
+  </section>
+</div>

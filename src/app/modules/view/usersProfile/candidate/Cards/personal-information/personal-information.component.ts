@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Usuario } from '../../../../../../core/interfaces/User.interface';
+import { mockUser } from '../../../../../../shared/mock-data/mock-user';
 
 @Component({
   selector: 'app-personal-information',
@@ -8,6 +10,7 @@ import { Component } from '@angular/core';
   styleUrl: './personal-information.component.css'
 })
 export class PersonalInformationComponent {
-  nacionalidad:string = 'nacionalidad'
+
+  User : Usuario = mockUser;
 
 }

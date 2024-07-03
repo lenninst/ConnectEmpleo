@@ -1,0 +1,7 @@
+.edit_modal_content {
+  @apply
+  bg-opacity-80
+  backdrop-blur-lg
+  text-h1primary
+
+}

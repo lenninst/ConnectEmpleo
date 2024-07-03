@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+
+import { faLocationDot, faHeart, faBan} from '@fortawesome/free-solid-svg-icons';
 import { DetailsComponent } from './details/details.component';
 import { RequirementsComponent } from './requirements/requirements.component';
+import { Empresa } from '../../../../core/interfaces/ofertas.interface';
+import { mockEmpresas } from '../../../../shared/mock-data/empresas.mock';
 
 @Component({
   selector: 'app-cards',
@@ -15,5 +18,9 @@ import { RequirementsComponent } from './requirements/requirements.component';
 })
 export class CardsComponent {
   faLocationDot = faLocationDot;
+  faHeart = faHeart;
+  faBan = faBan;
+
+  empresa : Empresa[] = mockEmpresas;
 
 }

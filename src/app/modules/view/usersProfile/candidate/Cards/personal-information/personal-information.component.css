@@ -1,0 +1,5 @@
+.data_info_content span {
+  @apply
+  /* font-bold */
+  border-white
+}

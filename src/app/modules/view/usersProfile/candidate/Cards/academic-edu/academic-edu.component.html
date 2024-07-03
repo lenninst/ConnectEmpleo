@@ -1,0 +1,14 @@
+<div>
+  @for(formacion of users.formacionAcademica; track users.formacionAcademica){
+
+  <div class="bg-second rounded-lg p-4">
+    <h1>{{formacion.titulo}}</h1>
+    <p>{{formacion.institucion}}</p>
+    <p>{{formacion.pais}}</p>
+    <p>{{formacion.fechaDeInicio }} - {{formacion.fechaDeFinalizacion }}</p>
+
+  </div>
+  <br>
+
+  }
+</div>

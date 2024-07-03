@@ -1,0 +1,61 @@
+<div class="">
+  <form class="flex flex-col gap-4">
+
+    <div class="flex gap-4">
+      <section>
+        <div class="mt-1">
+          <label class="block label_style">Nombre</label>
+          <input [placeholder]="User.nombre" type="text" name="nacionalidad" class="input_style w-60">
+        </div>
+
+        <div class="mt-1">
+          <label for="nacionalidad" class="block">Nacionalidad</label>
+          <input [placeholder]="User.nacionalidad" type="text" name="nacionalidad" class="input_style w-60">
+        </div>
+        <div class="mt-1">
+          <label for="nacionalidad" class="block">Fecha de Nacimiento</label>
+          <input [placeholder]="User.fechaDeNacimiento" type="text" name="nacionalidad" class="input_style w-60">
+        </div>
+
+        <div class="mt-1">
+          <label for="nacionalidad" class="block">Género</label>
+          <select id="genero" name="genero" [(ngModel)]="User.genero"
+            class="input_style w-60 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+          </select>
+        </div>
+
+
+      </section>
+
+      <section>
+        <div class="mt-1">
+          <label for="nacionalidad" class="block">Nacionalidad</label>
+          <input [placeholder]="User.nacionalidad" type="text" name="nacionalidad" class="input_style w-60">
+        </div>
+
+        <div class="mt-1">
+          <label for="nacionalidad" class="block">Nacionalidad</label>
+          <input [placeholder]="User.nacionalidad" type="text" name="nacionalidad" class="input_style w-60">
+        </div>
+        <div class="mt-1">
+          <label for="nacionalidad" class="block">Nacionalidad</label>
+          <input [placeholder]="User.nacionalidad" type="text" name="nacionalidad" class="input_style w-60">
+        </div>
+        <div class="mt-1">
+          <label for="nacionalidad" class="block">Nacionalidad</label>
+          <input [placeholder]="User.nacionalidad" type="text" name="nacionalidad" class="input_style w-60">
+        </div>
+
+      </section>
+
+    </div>
+
+    <div class="flex justify-center gap-8">
+      <button (click)="onSave()" type="submit" class="secondbtn">Cancelar</button>
+      <button (click)="onSave()" type="submit" class="primarybtn">Guardar</button>
+    </div>
+  </form>
+
+</div>
