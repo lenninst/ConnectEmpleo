@@ -1,3 +1,6 @@
+/**
+ * @module
+ */
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -6,6 +9,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { AccountService } from '../../../services/account.service';
+import { first } from 'rxjs';
 
 interface FormModel {
   userName: string;
@@ -41,8 +46,8 @@ export class RegisterComponent {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    // private accountService: AccountService,
-    // private alertService: AleertService,
+    private accountService: AccountService,
+    // private alertService: AlertService,
   ) { }
 
   ngOnInit() {
@@ -56,16 +61,21 @@ export class RegisterComponent {
   }
 
   /**
-   * validadores de campos
+   * obtener validadores
+   * @returns {[K in keyof FormModel]: AbstractControl}
    */
   get fieldsValidator(): { [K in keyof FormModel]: AbstractControl } {
     return this.form.controls as { [K in keyof FormModel]: AbstractControl };
   }
 
+  /**
+  * @returns {AbstractControl}
+   */
   get f() {
     return this.form.controls;
 
   }
+
   /**
    * envio de formulario
    */
@@ -86,10 +96,24 @@ export class RegisterComponent {
 
     // this.alertService.clear();
 
-    if (this.form.invalid){
+    if (this.form.invalid) {
       return console.log("Eror: no se envio el formulario");
     }
 
+    this.loading = true;
+
+    this.accountService.register(this.form.value)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          // Acción después de que el registro sea exitoso
+          this.router.navigate(['/login'], { relativeTo: this.route });
+        },
+        error: error => {
+          // Manejo de errores durante el registro
+          this.loading = false; // Detener el indicador de carga
+        }
+      });
 
     console.log("se envio el formulario ");
     console.log(this.form.value);
@@ -98,9 +122,13 @@ export class RegisterComponent {
   }
 
   /**
-   * validar campos
+  * Validar campos
+   * @param controlName - nombre del campo
+   * @returns {string} - placeholder
+  * @returns {string} - mensaje de error
+   * @returns
    */
-  getPlaceholder(controlName: string) {
+  getPlaceholder(controlName: string): string {
     if (this.submitted && this.f[controlName].errors) {
       if (this.f[controlName].hasError('required')) {
         switch (controlName) {
@@ -136,7 +164,9 @@ export class RegisterComponent {
   }
 
   /**
-   * obtener clases dinamicas
+  * Obtener clases dinamicas
+   * @param controlName - nombre del campo
+   * @returns
    */
   getClasses(controlName: string) {
     return {
