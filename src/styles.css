@@ -5,6 +5,7 @@
 :root {
   --primaryh1-color: #ac8ee9;
   --mdh2-color: #bfc7d2;
+  --red-color:#eb6f92;
 }
 
 /* --buttons */
@@ -115,5 +116,15 @@
   p-2
 
 }
+
+/* fields styles */
+.field_msg_required {
+  color:var(--red-color) ;
+  font-size:0.80rem;
+  /* background: #fff; */
+  text-align: left;
+  margin-top: -1rem;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

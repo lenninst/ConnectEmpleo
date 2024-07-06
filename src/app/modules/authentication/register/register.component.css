@@ -1,0 +1,7 @@
+.placeholder-red::placeholder {
+  color:var(--red-color) ;
+}
+
+.is-invalid {
+  border-color: var(--red-color);
+}

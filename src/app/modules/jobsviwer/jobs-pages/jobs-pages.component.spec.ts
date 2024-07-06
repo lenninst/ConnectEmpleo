@@ -11,7 +11,7 @@ describe('JobsPagesComponent', () => {
       imports: [JobsPagesComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(JobsPagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -20,4 +20,5 @@ describe('JobsPagesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

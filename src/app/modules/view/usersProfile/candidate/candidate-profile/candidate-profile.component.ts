@@ -41,6 +41,7 @@ export class CandidateProfileComponent {
     User: Usuario = mockUser;
   goToDashboard() {
     console.log("cicl en regresar")
+
     this.router.navigate(['/user/mainView'])
   }
 

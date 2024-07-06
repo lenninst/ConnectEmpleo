@@ -14,4 +14,5 @@ import { FormGroup,  FormControl , ReactiveFormsModule} from '@angular/forms';
 })
 export class AppComponent {
   title = 'connectEmpleo';
+
  }
