@@ -17,6 +17,7 @@ module.exports = {
         paragraph1: '#808A97',
         bg_second: '#171F2B',
         primaryh1help: '#ac8ee9',
+        redErrorColor: '#eb6f92'
       },
     },
   },

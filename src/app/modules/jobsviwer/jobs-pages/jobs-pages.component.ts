@@ -6,6 +6,7 @@ import { Datum, jobsResponse } from '../../../core/interfaces/jobs.interface';
 import { CommonModule } from '@angular/common';
 
 
+
 @Component({
   selector: 'app-jobs-pages',
   standalone: true,
@@ -23,6 +24,11 @@ export class JobsPagesComponent {
   termino: string = ""
 
   constructor(private apiServices: ApiService) { }
+
+
+
+
+
 
   search() {
     this.hayError = false;
