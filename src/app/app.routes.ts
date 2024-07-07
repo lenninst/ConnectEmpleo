@@ -18,7 +18,7 @@ export const routes: Routes = [
     loadComponent: () => import('./modules/jobsviwer/jobs-pages/jobs-pages.component').then(c => c.JobsPagesComponent)
   },
   {
-    path: "user",
+    path: "connetempleo",
     loadChildren: () => import('./modules/view/view.route').then(h => h.viewRouting),
   },
 

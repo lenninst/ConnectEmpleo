@@ -25,13 +25,15 @@ export class AccountService {
     }
 
     /**
-     * @param username -
+     * @param email -
      * @param password -
      * @returns
      */
-    login(username: string, password: string) {
-        return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
+    login(email: string, password: string): Observable<User> {
+        return this.http.post<User>(`${environment.apiUrl}/users`, { email, password })
             .pipe(map(user => {
+
+        if (user && user.email)
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 this.userSubject.next(user);

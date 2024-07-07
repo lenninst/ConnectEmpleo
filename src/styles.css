@@ -126,5 +126,13 @@
   margin-top: -1rem;
 }
 
+.placeholder-red::placeholder {
+  color:var(--red-color) ;
+}
+
+.is-invalid {
+  border-color: var(--red-color);
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
