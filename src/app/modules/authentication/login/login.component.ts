@@ -50,35 +50,34 @@ export class LoginComponent {
 
   get f() { return this.form.controls }
 
-  onSubmit() {
+ onSubmit() {
     this.submitted = true;
 
     if (this.form.invalid) {
-      console.log('formularion invalido')
-      return;
+        console.log('Formulario inválido');
+        return;
     }
 
     this.loading = true;
 
-    // const username = this.form.get('username')?.value;
-    // const password = this.form.get('password')?.value;
+    const email = this.form.get('email')?.value ?? '';
+    const password = this.form.get('password')?.value ?? '';
 
-    // console.log(username, password)
+    this.accountService.login(email, password)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/connetempleo';
+                this.router.navigateByUrl(returnUrl);
+            },
+            error: error => {
+                console.error("No se pudo iniciar sesión ", error);
+                // this.alertService.error(error);
+                this.loading = false;
+            }
+        });
+}
 
-    this.accountService.login(this.f['email'].value, this.f['password'].value)
-      .pipe(first())
-      .subscribe({
-        next: () => {
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/connetempleo';
-          this.router.navigateByUrl(returnUrl);
-        },
-        error: error => {
-          console.error("no se puedo iniciar sesion ", error);
-          // this.alertService.error(error);
-          this.loading = false;
-        }
-      })
-  }
 
 
   getPlaceholder(controlName: string): string {
