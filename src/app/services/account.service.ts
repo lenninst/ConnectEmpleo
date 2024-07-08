@@ -16,7 +16,8 @@ export class AccountService {
     private router: Router,
     private http: HttpClient
   ) {
-    this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
+    const userJson = (typeof localStorage !== 'undefined') ? localStorage.getItem('user'): null;
+    this.userSubject = new BehaviorSubject<User | null>(userJson? JSON.parse(userJson): null);
     this.user = this.userSubject.asObservable();
   }
 
@@ -47,7 +48,7 @@ export class AccountService {
     this.router.navigate(['/account/login']);
   }
 
-  /**
+ /**
    * @param user -
    * @returns
    */

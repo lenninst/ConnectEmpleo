@@ -1,0 +1,36 @@
+:host ::ng-deep .dark_datepicker .p-datepicker {
+  background-color:var(--main-bbg-color);
+  color: #fff;
+}
+
+:host ::ng-deep .dark_datepicker .p-datepicker-header {
+  background-color: var(--main-bbg-color);
+  color: #fff;
+}
+
+:host ::ng-deep .dark_datepicker .p-datepicker-calendar {
+  background-color: var(--main-bbg-color);
+  color: #fff;
+}
+
+:host ::ng-deep .dark_datepicker .p-datepicker-today,
+:host ::ng-deep .dark_datepicker .p-datepicker-footer {
+  background-color: var(--main-bbg-color);
+  color: #fff;
+}
+
+:host ::ng-deep .dark_datepicker .p-datepicker-today:hover,
+:host ::ng-deep .dark_datepicker td:hover {
+  background-color: var(--main-bbg-color);
+  color: #fff;
+}
+
+:host ::ng-deep .dark_datepicker .p-inputtext {
+  padding: 0.25rem 0.5rem;
+  width: 10.5rem;
+  height: 2.25rem;
+  background-color: var(--main-bbg-color);
+  outline: none;
+  border: 1px solid var(--stroke-color);
+  color: var(--text-color-paragraph);
+}

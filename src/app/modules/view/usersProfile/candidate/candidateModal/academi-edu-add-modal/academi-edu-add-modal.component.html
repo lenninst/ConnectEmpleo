@@ -1,5 +1,31 @@
-<p>academi-edu-add-modal works!</p>
-@for(titulo of formacionAcademica; track titulo){
+<div class="flex flex-col">
+  <h1 class="font-semibold text-2xl mb-4">Educacion academica</h1>
+  <form class="flex flex-col gap-2 " [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input class="input_style" [placeholder]="getPlaceholder('titulo')" formControlName="titulo"
+      [ngClass]="getValidationClassName('titulo')">
+    <input class="input_style" [placeholder]="getPlaceholder('universidad')" formControlName="universidad"
+      [ngClass]="getValidationClassName('universidad')">
+    <input class="input_style" [placeholder]="getPlaceholder('pais')" formControlName="pais"
+      [ngClass]="getValidationClassName('pais')">
+    <textarea class="input_style" [placeholder]="getPlaceholder('descripcion')" formControlName="descripcion"
+      [ngClass]="getValidationClassName('descripcion')"></textarea>
+
+    <div class="flex gap-4 justify-evenly">
+      <div class="flex flex-col gap-2 text-paragraph1">
+        <span>Fecha de inicio</span>
+        <p-calendar formControlName="inicialDate" styleClass="dark_datepicker" />
+      </div>
+      <div class="flex flex-col gap-2 text-paragraph1">
+        <span>Fecha de inicio</span>
+        <p-calendar formControlName="endDate" styleClass="dark_datepicker" />
+      </div>
+    </div>
+
+    <div class="flex gap-4 justify-evenly">
+      <button class="secondbtn">Cancelar</button>
+      <button class="primarybtn" type="submit">Agregar</button>
+    </div>
 
 
-}
+  </form>
+</div>

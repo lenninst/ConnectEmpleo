@@ -1,3 +1,6 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +9,9 @@
   --primaryh1-color: #ac8ee9;
   --mdh2-color: #bfc7d2;
   --red-color:#eb6f92;
+  --main-bbg-color: #171f2b;
+  --stroke-color:#2E3C51;
+  --text-color-paragraph: ##808A97;
 }
 
 /* --buttons */
@@ -47,6 +53,7 @@
   shadow-[0_20px_50px_rgba(8,_146,_127,_0.3)]
 }
 
+ /* fieds input  */
 .input_style{
   @apply
   bg-bg_second
