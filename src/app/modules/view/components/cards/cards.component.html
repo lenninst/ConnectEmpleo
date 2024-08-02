@@ -1,44 +1,44 @@
 <div class="card_style">
 
-  @for (empres of empresa; track empresa){
-  @for(ofertaEmpleo of empres.ofertaEmpleo; track ofertaEmpleo.id){
-  <div class="flex gap-2 items-start my-2 md:w-1/2">
-    <div class="bg-red-700 w-12 h-12 rounded-lg">
-      <img [src]="empres.logo" alt="logo">
-    </div>
+  <!-- @for (empres of empresa; track empresa){ -->
+  <!-- @for(ofertaEmpleo of empres.ofertaEmpleo; track ofertaEmpleo.id){ -->
+  <!-- <div class="my-2 flex items-start gap-2 md:w-1/2"> -->
+  <!--   <div class="h-12 w-12 rounded-lg bg-red-700"> -->
+  <!--     <img [src]="empres.logo" alt="logo"> -->
+  <!--   </div> -->
 
-    <div class="flex flex-col ">
-      <h1>{{empres.nombre}}</h1>
-      <a [href]="empres.sitioWeb" class="text-primarybt">Sitio Web
-      </a>
-      <span class="flex items-center gap-2">
-        <fa-icon [icon]=faLocationDot></fa-icon>
-        {{empres.ubicacion}}
-      </span>
+  <!--   <div class="flex flex-col "> -->
+  <!--     <h1>{{empres.nombre}}</h1> -->
+  <!--     <a [href]="empres.sitioWeb" class="text-primarybt">Sitio Web -->
+  <!--     </a> -->
+  <!--     <span class="flex items-center gap-2"> -->
+  <!--       <fa-icon [icon]=faLocationDot></fa-icon> -->
+  <!--       {{empres.ubicacion}} -->
+  <!--     </span> -->
 
-    </div>
-  </div>
-  <div class="bg-bg_second rounded-lg p-2 md:w-full md:max-w-full h-72 min-h-56 max-h-72 overflow-y-auto">
-    <app-details [titulo]='ofertaEmpleo.titulo' [fecha]='ofertaEmpleo.fechaPublicacion'
-      [details]='ofertaEmpleo.descripcion' [ubicacion]='ofertaEmpleo.ubicacion' [modalidad]='ofertaEmpleo.modalidad'
-      [experiencia]='ofertaEmpleo.aniosDeExperiencia' [salario]='ofertaEmpleo.salario'
-      [vacantes]='ofertaEmpleo.vacantes'></app-details>
+  <!--   </div> -->
+  <!-- </div> -->
+  <!-- <div class="h-72 max-h-72 min-h-56 overflow-y-auto rounded-lg bg-bg_second p-2 md:w-full md:max-w-full"> -->
+  <!--   <app-details [titulo]='ofertaEmpleo.titulo' [fecha]='ofertaEmpleo.fechaPublicacion' -->
+  <!--     [details]='ofertaEmpleo.descripcion' [ubicacion]='ofertaEmpleo.ubicacion' [modalidad]='ofertaEmpleo.modalidad' -->
+  <!--     [experiencia]='ofertaEmpleo.aniosDeExperiencia' [salario]='ofertaEmpleo.salario' -->
+  <!--     [vacantes]='ofertaEmpleo.vacantes'></app-details> -->
 
-  </div>
+  <!-- </div> -->
 
-  <div class="flex justify-end gap-4 mt-2 mb-8">
-    <button class="iconbtn" type="">
-      <fa-icon [icon]=faBan></fa-icon>
-    </button>
-    <button class="iconbtn" type="">
-      <fa-icon [icon]=faHeart></fa-icon>
-    </button>
-    <button class="primarybtn" type="">Postular</button>
-  </div>
+  <!-- <div class="mb-8 mt-2 flex justify-end gap-4"> -->
+  <!--   <button class="iconbtn" type=""> -->
+  <!--     <fa-icon [icon]=faBan></fa-icon> -->
+  <!--   </button> -->
+  <!--   <button class="iconbtn" type=""> -->
+  <!--     <fa-icon [icon]=faHeart></fa-icon> -->
+  <!--   </button> -->
+  <!--   <button class="primarybtn" type="">Postular</button> -->
+  <!-- </div> -->
 
-  <!-- <hr class="my-2 h-0.5 border-t-0 bg-strokeline" /> -->
+  <!-- <!-- <hr class="my-2 h-0.5 border-t-0 bg-strokeline" /> --> -->
 
-  }
-  }
+  <!-- } -->
+  <!-- } -->
   <br />
 </div>

@@ -14,8 +14,8 @@ import { AuthGuard } from "../../helpers/auth.guard";
 export const routes: Routes = [
   {
     path: '', component: MainViewComponent,
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    // canActivate: [AuthGuard],
+    // canActivateChild: [AuthGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'app' },
 
