@@ -12,6 +12,7 @@ import { faPen, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ProfileEditModalComponent } from '../candidateModal/profile-edit-modal/profile-edit-modal.component';
 import { AcademicEduComponent } from '../Cards/academic-edu/academic-edu.component';
 import { WorkExperienceComponent } from '../Cards/work-experience/work-experience.component';
+import { AcademiEduAddModalComponent } from '../candidateModal/academi-edu-add-modal/academi-edu-add-modal.component';
 
 @Component({
   selector: 'app-candidate-profile',
@@ -25,6 +26,7 @@ import { WorkExperienceComponent } from '../Cards/work-experience/work-experienc
     ProfileEditModalComponent,
     AcademicEduComponent,
     WorkExperienceComponent,
+    AcademiEduAddModalComponent
   ],
   templateUrl: './candidate-profile.component.html',
   styleUrl: './candidate-profile.component.css'
@@ -49,7 +51,6 @@ export class CandidateProfileComponent {
     this.location.back();
   }
 
-
   showUserEditModal = false;
   openEditModal(){
     console.log("abrir modal para editar")
@@ -62,8 +63,11 @@ export class CandidateProfileComponent {
 
   showAddAcademicModal = false;
   AddAcademicModal (){
+    console.log("abrir modal para agregar academicos")
     this.showAddAcademicModal = true;
   }
+
+
 
 
 

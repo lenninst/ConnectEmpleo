@@ -33,11 +33,11 @@
       <app-contact-information></app-contact-information>
     </div>
     <div class="mt-3 w-full">
-        <hr class="w-full h_divider">
+      <hr class="w-full h_divider">
       <div class="flex justify-between items-end mb-4 ">
         <h1 class="font-semibold text-2xl"> Formación académica </h1>
-        <button class="">
-          <fa-icon [icon]="faPlus" class="iconbtn"></fa-icon>
+        <button class="iconbtn hover:text-primarybt " (click)="AddAcademicModal()">
+          <fa-icon [icon]="faPlus"></fa-icon>
         </button>
       </div>
       <app-academic-edu></app-academic-edu>
@@ -46,7 +46,7 @@
       <hr class="w-full h_divider">
       <div class="flex justify-between items-end mb-4">
         <h1 class="font-semibold text-2xl">Experiencia laboral</h1>
-        <button class="">
+        <button (click)="AddAcademicModal()">
           <fa-icon [icon]="faPlus" class="iconbtn"></fa-icon>
         </button>
       </div>
@@ -58,9 +58,13 @@
 
 </div>
 
- @if(showUserEditModal){
-  <app-profile-edit-modal (closeUserEditModal)=closeUserEditModal()
-    class="fixed inset-0 z-50 flex items-center justify-center edit_modal_content">
+@if(showAddAcademicModal){
+<app-academi-edu-add-modal (closeUserEditModal)=closeUserEditModal()
+  class="fixed inset-0 z-50 flex items-center justify-center edit_modal_content">
 
-  </app-profile-edit-modal>
-  }
+</app-academi-edu-add-modal>
+}
+
+@if(showAddAcademicModal){
+hola
+}

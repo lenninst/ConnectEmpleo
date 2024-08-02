@@ -34,7 +34,7 @@ export class UserOptionsComponent {
   constructor(private router:Router) {}
 
   goToCandidateProfile(){
-    this.router.navigate(['/user/userProfile/candidateProfile'])
+    this.router.navigate(['/connetempleo/userProfile/candidateProfile'])
 
   }
 

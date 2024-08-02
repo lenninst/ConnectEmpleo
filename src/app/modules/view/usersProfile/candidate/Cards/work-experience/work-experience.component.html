@@ -1,11 +1,22 @@
 <div>
   @for(experiencia of user.experiencia; track user.experiencia){
-
   <div class="bg-second p-4 rounded-lg">
-    <h1>{{experiencia.puesto}}</h1>
-    <p>{{experiencia.funcion}}</p>
-    <p>{{experiencia.establecimiento}}</p>
-    <p>{{experiencia.aniosDeExperiencia}} años </p>
+    <div class="">
+      <h1 class="text-xl font-medium text-h1primary">{{experiencia.puesto}}</h1>
+      <p>{{experiencia.funcion}}</p>
+      <p>{{experiencia.establecimiento}}</p>
+      <p>{{experiencia.aniosDeExperiencia}} años </p>
+    </div>
+    <div class="flex gap-2 mt-4 ">
+      <button class="iconbtn hover:text-primarybt">
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+      <button class="iconbtn hover:text-redErrorColor">
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </button>
+
+    </div>
+
   </div>
 
   <br>

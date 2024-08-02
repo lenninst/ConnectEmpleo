@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { AccountService } from '../../../services/account.service';
 import { first } from 'rxjs';
+import { FieldValidationServices } from '../../../services/fieldsvalidation.services';
 
 interface FormModel {
   userName: string;
@@ -47,6 +48,7 @@ export class RegisterComponent {
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
+    private fieldsValidation: FieldValidationServices,
     // private alertService: AlertService,
   ) { }
 
@@ -143,7 +145,7 @@ export class RegisterComponent {
         }
       }
 
-      if (controlName === 'email' && !this.validateEmail(this.f[controlName].value)) {
+      if (controlName === 'email' && !this.fieldsValidation.validateEmail(this.f[controlName].value)) {
         return 'Email no es válido';
       }
       if (controlName === 'password' && this.f[controlName].hasError('minlength')) {
@@ -151,12 +153,6 @@ export class RegisterComponent {
       }
     }
     return controlName.charAt(0).toUpperCase() + controlName.slice(1); // Capitaliza el nombre del campo
-  }
-
-  validateEmail(email: string): boolean {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-
   }
 
   termsAcceptedChecked(): boolean {
@@ -169,12 +165,7 @@ export class RegisterComponent {
    * @returns
    */
   getClasses(controlName: string) {
-    return {
-      'is-invalid': this.submitted && this.f[controlName].errors,
-      'placeholder-red': this.submitted && this.f[controlName].hasError('required')
-
-    }
-
+    return this.fieldsValidation.getValidationClassName(this.form, controlName, this.submitted);
   };
 
 

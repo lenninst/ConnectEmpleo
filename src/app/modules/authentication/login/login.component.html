@@ -3,14 +3,22 @@
     <h1 class="font-semibold text-3xl ">Inicia tu sesión</h1>
 
     <div class="w-64 mt-10">
-      <form class="flex flex-col gap-4">
-        <input class="input_style" type="email" name="" value="" placeholder="Email">
-        <input class="input_style" type="password" name="" value="" placeholder="Contraseña">
+      <form class="flex flex-col gap-4" [formGroup] ="form" (ngSubmit)="onSubmit()" >
+        <input class="input_style" type="email" formControlName="email"
+          [ngClass]="getValidationClassName('email')"
+          [placeholder]="getPlaceholder('email')">
+
+        <input class="input_style" type="password"
+          formControlName="password"
+          [ngClass]="getValidationClassName('password')"
+          [placeholder]="getPlaceholder('password')">
 
         <a href="" class="text-primaryh1help">Recuperar contraseña</a>
 
         <button type="submit">
-          <mat-icon>arrow_forward</mat-icon> </button>
+          <fa-icon class="iconbtn" [icon]="faArrowRight"/>
+
+        </button>
       </form>
     </div>
 

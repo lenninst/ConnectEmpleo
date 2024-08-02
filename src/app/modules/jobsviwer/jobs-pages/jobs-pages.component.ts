@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon'
 import { Datum, jobsResponse } from '../../../core/interfaces/jobs.interface';
 import { CommonModule } from '@angular/common';
+import { Ofertas, OfertasEmpleoResponse } from '../../../core/interfaces/ofertas.interface';
+import { OfertaEmpleoService } from '../../../services/ofertaEmpleo.services';
 
 
 
@@ -23,11 +25,28 @@ export class JobsPagesComponent {
   public jobs: Datum[] = [];
   termino: string = ""
 
-  constructor(private apiServices: ApiService) { }
+  ofertaEmpleos: Ofertas[] = [];
+  error: string | null = null;
 
+  constructor(private apiServices: ApiService, private ofertaEmpleosService: OfertaEmpleoService ) { }
 
+  ngOnInit(): void {
+    this.LoadOfertasEmpleo();
+  }
 
+  LoadOfertasEmpleo(){
+    this.ofertaEmpleosService.GetOfertaEmpleo().subscribe(
+      (response: OfertasEmpleoResponse) => {
+        this.ofertaEmpleos = response.data;
 
+      },
+    (error)=> {
+        this.error = 'Error al cargar ofertas';
+        console.log(error);
+      }
+    )
+
+  }
 
 
   search() {

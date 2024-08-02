@@ -1,5 +1,5 @@
-<nav class="sticky top-0 z-10 px-4  backdrop-filter backdrop-blur-lg
-            bg-opacity-30 p-2 border-b border-slate-800">
+<nav class="sticky top-0 z-10 border-b  border-slate-800 bg-opacity-30
+            p-2 px-4 backdrop-blur-lg backdrop-filter">
   <div class=" flex w-full items-center justify-between text-white">
     <div class="font-bold ">
       ConnectEmpleo🌱
@@ -22,7 +22,7 @@
   </div>
 </nav>
 
-<div class="flex flex-col text-white items-center mt-4">
+<div class="mt-4 flex flex-col items-center text-white">
 
 
   @if (hayError){
@@ -31,34 +31,34 @@
   }
 
   @if(!hayError) {
-  <div class="flex flex-col justify-center items-center gap-3">
-    @for(jobData of jobs; track jobData.job_id) {
+  <div class="flex flex-col items-center justify-center gap-3">
+    @for(ofertaItem of ofertaEmpleos; track ofertaEmpleos) {
     <div class="w-1/2">
       <div class="card_lstyle p-4">
         <div class="flex">
-          <div class="bg-green-100 w-14 h-14 rounded-lg">
-            <img src="jobData.employer_logo" alt="">
+          <div class="h-14 w-14 rounded-lg bg-green-100">
+            <!-- <img src="ofertaItem." alt=""> -->
           </div>
-          <div class="flex flex-col ml-4">
-            <h1 class="text-h1primary text-xl"> {{jobData.employer_name}} </h1>
+          <div class="ml-4 flex flex-col">
+            <h1 class="text-xl text-h1primary"> {{ofertaItem.empresa.nombre}} </h1>
             <div class="flex items-center gap-2 text-h2secondary">
               <mat-icon>location_on</mat-icon>
-              {{jobData.job_country}}
+              {{ofertaItem.empresa.sitioweb}}
             </div>
           </div>
         </div>
 
         <div class="mt-4 text-paragraph1">
-          <h2 class="text-xl">{{jobData.job_title}} </h2>
-          <p class="line-clamp-3 ">{{jobData.job_description}}</p>
-          <p class="text-primarybt flex items-center mt-2">
-            {{jobData.employer_website}}
+          <h2 class="text-xl">{{ofertaItem.titulo}} </h2>
+          <p class="line-clamp-3 ">{{ofertaItem.descripcion}}</p>
+          <p class="mt-2 flex items-center text-primarybt">
+            {{ofertaItem.descripcion}}
             <mat-icon class="text-sm">north_east</mat-icon>
           </p>
         </div>
 
-        <div class="flex justify-end gap-4 items-center text-h2secondary">
-          <span>{{jobData.job_posted_at_timestamp}}</span>
+        <div class="flex items-center justify-end gap-4 text-h2secondary">
+          <span>{{ofertaItem.fechapublicacion}}</span>
           <mat-icon class="icons_style">favorite</mat-icon>
           <button class="second_button_style" type=""> Postular </button>
         </div>
@@ -74,11 +74,11 @@
   <div class="w-1/2">
     <div class="card_lstyle p-4">
       <div class="flex">
-        <div class="bg-green-100 w-14 h-14 rounded-lg">
+        <div class="h-14 w-14 rounded-lg bg-green-100">
           <img src="chrome://branding/content/about-logo.png" alt="">
         </div>
-        <div class="flex flex-col ml-4">
-          <h1 class="text-h2secondary text-xl"> titulo de empresa </h1>
+        <div class="ml-4 flex flex-col">
+          <h1 class="text-xl text-h2secondary"> titulo de empresa </h1>
           <div class="flex items-center gap-2 text-h2secondary">
             <mat-icon>location_on</mat-icon>
             Ubicacion
@@ -97,14 +97,14 @@
           ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim.
           Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis..
         </p>
-        <p class="text-primarybt flex items-center pt-2">
+        <p class="flex items-center pt-2 text-primarybt">
           Sitio web
           <mat-icon class="text-sm">north_east</mat-icon>
         </p>
       </div>
 
 
-      <div class="flex justify-end gap-4 items-center ">
+      <div class="flex items-center justify-end gap-4 ">
         <mat-icon class="icons_style">favorite</mat-icon>
         <button class="second_button_style" type=""> Postular </button>
       </div>
