@@ -1,20 +1,18 @@
 <nav class="sticky top-0 z-10 border-b  border-slate-800 bg-opacity-30
             p-2 px-4 backdrop-blur-lg backdrop-filter">
   <div class=" flex w-full items-center justify-between text-white">
-    <div class="font-bold ">
-      ConnectEmpleo🌱
-    </div>
     <div class="flex gap-4">
-      <a href="#inicio">Inicio</a>
-
+      <div class="font-bold ">
+        ConnectEmpleo🌱
+      </div>
+      <div class="flex gap-4">
+        <a href="#inicio">Inicio</a>
+      </div>
     </div>
-    <form class="form_style" (submit)="search()">
-      <input class="input_style " type="text" (ngModel)="termino" placeholder="Buscar un trabajo" name="searchTerm">
-      <button type="submit">
-        <mat-icon>search</mat-icon>
-      </button>
-    </form>
-
+    <div class="form_style">
+      <input class="input_style " type="text" #searchQuery (input)="onSearchUpdated(searchQuery.value)"
+        placeholder="Buscar un trabajo">
+    </div>
 
     <button class="primarybtn  " routerLink="login">
       Iniciar Sesión
@@ -22,45 +20,126 @@
   </div>
 </nav>
 
-<div class="mt-4 flex flex-col items-center text-white">
+<div class="mt-4 flex flex-col items-center text-ctext ">
 
 
-  @if (hayError){
-  <span>No se encontro resultados para {{termino}}</span>
+  @if (noResults){
+  <span>No se encontro resultados para {{searchQuery.value}}</span>
 
   }
 
-  @if(!hayError) {
-  <div class="flex flex-col items-center justify-center gap-3">
-    @for(ofertaItem of ofertaEmpleos; track ofertaEmpleos) {
-    <div class="w-1/2">
+  @if(!noResults) {
+  <div class="flex w-full flex-col items-center  justify-center gap-5 px-4 md:w-9/12 ">
+    @for(ofertaItem of filteredOfertasEmpleos; track filteredOfertasEmpleos) {
+    <div class="w-full">
       <div class="card_lstyle p-4">
+        <div class="mb-4">
+          <span class="chips">
+            <fa-icon [icon]=faBuildingUser class="text-cyellow"></fa-icon>
+            Empresa
+          </span>
+        </div>
         <div class="flex">
           <div class="h-14 w-14 rounded-lg bg-green-100">
-            <!-- <img src="ofertaItem." alt=""> -->
+            <img src="ofertaItem.empresa.logo" alt="logo">
           </div>
           <div class="ml-4 flex flex-col">
-            <h1 class="text-xl text-h1primary"> {{ofertaItem.empresa.nombre}} </h1>
-            <div class="flex items-center gap-2 text-h2secondary">
-              <mat-icon>location_on</mat-icon>
-              {{ofertaItem.empresa.sitioweb}}
+            <h1 class="text-xl font-medium text-mauve"> {{ofertaItem.empresa.nombre}} </h1>
+            <div class="flex mt-4 gap-4">
+              <span class="chips">
+                <fa-icon [icon]=faLightbulb></fa-icon>
+                Fundado en {{ofertaItem.empresa.fechafundacion}}
+              </span>
+              <span class="chips">
+                <fa-icon [icon]=faPeopleGroup></fa-icon>
+                Empreados
+                <span class="items">{{ofertaItem.empresa.cantidadempleados}}</span>
+              </span>
+              <span class="chips">
+                <fa-icon [icon]=faBuildingCircleCheck></fa-icon>
+                Tipo
+                <span class="items">{{ofertaItem.empresa.tipo}}</span>
+              </span>
+
             </div>
           </div>
         </div>
+        <p class="mt-2 flex items-center text-cblue">
+          {{ofertaItem.empresa.sitioweb}}
+          <mat-icon class="text-sm">north_east</mat-icon>
+        </p>
+        <h3 class="mb-1 mt-4 text-xl text-lavender">Descripcion de empresa</h3>
+        <div class="mb-4 rounded-md bg-idxsurface1 p-4">
 
-        <div class="mt-4 text-paragraph1">
-          <h2 class="text-xl">{{ofertaItem.titulo}} </h2>
-          <p class="line-clamp-3 ">{{ofertaItem.descripcion}}</p>
-          <p class="mt-2 flex items-center text-primarybt">
-            {{ofertaItem.descripcion}}
-            <mat-icon class="text-sm">north_east</mat-icon>
+          <p class="text-subtext1">
+            {{ofertaItem.empresa.descripcion}}
           </p>
+
         </div>
 
-        <div class="flex items-center justify-end gap-4 text-h2secondary">
-          <span>{{ofertaItem.fechapublicacion}}</span>
-          <mat-icon class="icons_style">favorite</mat-icon>
-          <button class="second_button_style" type=""> Postular </button>
+        <hr class="h-0.5 border-t-0 bg-strokeline" />
+        <div class="my-4">
+          <span class="chips">
+            <fa-icon [icon]=faPersonDigging class="text-sapphire"></fa-icon>
+            Oferta de empleo
+          </span>
+        </div>
+        <div class="my-4">
+          <h2 class="text-2xl text-mauve">{{ofertaItem.titulo}} </h2>
+          <div class="flex gap-4 mt-2">
+            <span class="chips">
+              <fa-icon [icon]=faLocationDot></fa-icon>
+              {{ofertaItem.ubicacion}}
+            </span>
+
+            <span class="chips">
+              <fa-icon [icon]=faDollarSign></fa-icon>
+              Salario
+              {{ofertaItem.salario}}
+            </span>
+
+            <span class="chips">
+              <fa-icon [icon]=faBriefcase></fa-icon>
+              Años experiencia
+              {{ofertaItem.aniosexperiencia}}
+            </span>
+
+            <span class="chips">
+              <fa-icon [icon]=faBuilding></fa-icon>
+              Modalidad
+              {{ofertaItem.modalidad}}
+            </span>
+
+            <span class="chips">
+              <fa-icon [icon]=faPerson></fa-icon>
+              Vacantes
+              {{ofertaItem.vacantes}}
+            </span>
+
+          </div>
+
+          <h3 class="mt-6 text-xl mb-2">Detalles de la oferta de empleo</h3>
+          <div class="rounded-md bg-idxsurface1 p-4">
+            <p class="line-clamp-3 ">{{ofertaItem.descripcion}}</p>
+          </div>
+
+        </div>
+
+        <div class="mt-4 flex items-center justify-between text-h2secondary">
+          <div>
+            <span>
+              <fa-icon [icon]=faClock></fa-icon>
+              Publicado el
+              {{ofertaItem.fechapublicacion}}</span>
+
+          </div>
+          <div class="flex items-center gap-4">
+            <mat-icon class="icons_mauve" (click)="navigateToLogin()">favorite</mat-icon>
+            <button class="second_button_style bg-mauve" type="" (click)="navigateToLogin()">
+              Postular
+            </button>
+
+          </div>
         </div>
 
       </div>
@@ -69,48 +148,5 @@
     }
   </div>
   }
-
-  <!-- cards demo ui -->
-  <div class="w-1/2">
-    <div class="card_lstyle p-4">
-      <div class="flex">
-        <div class="h-14 w-14 rounded-lg bg-green-100">
-          <img src="chrome://branding/content/about-logo.png" alt="">
-        </div>
-        <div class="ml-4 flex flex-col">
-          <h1 class="text-xl text-h2secondary"> titulo de empresa </h1>
-          <div class="flex items-center gap-2 text-h2secondary">
-            <mat-icon>location_on</mat-icon>
-            Ubicacion
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 text-paragraph1">
-        <h2 class=" text-xl">Titulo de trabajo </h2>
-        <p class="line-clamp-3 ">Descripcion de trabajo Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-          consectetur cupidatat Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa
-          sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
-          Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident.
-          Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo
-          officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris
-          ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim.
-          Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis..
-        </p>
-        <p class="flex items-center pt-2 text-primarybt">
-          Sitio web
-          <mat-icon class="text-sm">north_east</mat-icon>
-        </p>
-      </div>
-
-
-      <div class="flex items-center justify-end gap-4 ">
-        <mat-icon class="icons_style">favorite</mat-icon>
-        <button class="second_button_style" type=""> Postular </button>
-      </div>
-
-    </div>
-  </div>
-
 
 </div>
