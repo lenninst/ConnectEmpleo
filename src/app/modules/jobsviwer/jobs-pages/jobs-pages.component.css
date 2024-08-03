@@ -6,3 +6,16 @@
   w-80
 
 }
+
+span {
+  @apply
+  text-lavender
+  font-medium
+
+}
+
+.items{
+  @apply
+  text-subtext1
+
+}

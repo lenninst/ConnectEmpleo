@@ -1,46 +1,63 @@
-import { Component } from '@angular/core';
-import { ApiService } from '../../../services/api.service';
-import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon'
-import { Datum, jobsResponse } from '../../../core/interfaces/jobs.interface';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { Ofertas, OfertasEmpleoResponse } from '../../../core/interfaces/ofertas.interface';
 import { OfertaEmpleoService } from '../../../services/ofertaEmpleo.services';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-
+import { faLocationDot, faPersonDigging, faDollarSign, faPeopleGroup, faBuildingUser, faBuildingCircleCheck, faBuilding, faBriefcase, faLightbulb, faPerson, faClock } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-jobs-pages',
   standalone: true,
   templateUrl: './jobs-pages.component.html',
-  styleUrl: './jobs-pages.component.css', imports: [FormsModule, MatIconModule, CommonModule],
+  styleUrl: './jobs-pages.component.css',
+  imports: [FormsModule, MatIconModule, CommonModule, FontAwesomeModule, ReactiveFormsModule],
   providers: []
 })
 
+export class JobsPagesComponent implements OnInit {
 
-export class JobsPagesComponent {
-
-  public searchTerm: string = '';
-  hayError: boolean = false;
-  public jobs: Datum[] = [];
-  termino: string = ""
+  //NOTE: icons
+  faLocationDot = faLocationDot;
+  faDollarSign = faDollarSign;
+  faBuilding = faBuilding;
+  faBriefcase = faBriefcase;
+  faPerson = faPerson;
+  faClock = faClock;
+  faLightbulb = faLightbulb;
+  faPeopleGroup = faPeopleGroup;
+  faBuildingCircleCheck = faBuildingCircleCheck;
+  faBuildingUser = faBuildingUser;
+  faPersonDigging = faPersonDigging;
 
   ofertaEmpleos: Ofertas[] = [];
+  filteredOfertasEmpleos: Ofertas[] = [];
   error: string | null = null;
+  noResults: boolean = false;
 
-  constructor(private apiServices: ApiService, private ofertaEmpleosService: OfertaEmpleoService ) { }
+  constructor(
+    private router: Router,
+    private ofertaEmpleosService: OfertaEmpleoService) {
+  }
 
   ngOnInit(): void {
     this.LoadOfertasEmpleo();
   }
 
-  LoadOfertasEmpleo(){
+  LoadOfertasEmpleo() {
     this.ofertaEmpleosService.GetOfertaEmpleo().subscribe(
       (response: OfertasEmpleoResponse) => {
         this.ofertaEmpleos = response.data;
+        this.filteredOfertasEmpleos = this.ofertaEmpleos;
+        this.noResults = this.filteredOfertasEmpleos.length === 0;
 
       },
-    (error)=> {
+      (error) => {
         this.error = 'Error al cargar ofertas';
         console.log(error);
       }
@@ -48,23 +65,18 @@ export class JobsPagesComponent {
 
   }
 
+  /**
+   * @param searchTerm - The search term entered by the user
+   */
+  onSearchUpdated(searchTerm: string) :void{
+    this.filteredOfertasEmpleos = this.ofertaEmpleos.filter(oferta =>
+      oferta.titulo.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    this.noResults = this.filteredOfertasEmpleos.length === 0;
+  }
 
-  search() {
-    this.hayError = false;
-    console.log(this.termino)
-    this.apiServices.getJobs(this.termino)
-      .subscribe((jobs) => {
-        console.log(jobs);
-        this.jobs = jobs.data;
-
-        console.log("este es array jobs " + JSON.stringify(this.jobs, null, 2));
-
-      }, (err) => {
-        this.hayError = true;
-        console.log('Error');
-        console.info(err);
-        this.jobs = [];
-      });
+  navigateToLogin() {
+    this.router.navigate(['/login'])
   }
 
 

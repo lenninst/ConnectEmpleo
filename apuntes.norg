@@ -1,3 +1,13 @@
+@document.meta
+title: apuntes
+description:
+authors: kanguro
+categories:
+created: 2024-08-02T16:27:05-0500
+updated: 2024-08-02T16:46:15-0500
+version: 1.1.1
+@end
+
 * Datos de candidatos /postulantes/
   - id
   - nombre
@@ -18,12 +28,11 @@
   - remoto
   - /postulantes/
 
-** educacion academica
+** (?) educacion academica
   - id
   - titulo
   - institucion
   - fecha_inicio
   - fecha_fin
   - descripcion
-
 
