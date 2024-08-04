@@ -15,9 +15,8 @@
 
         <a href="" class="text-primaryh1help">Recuperar contraseña</a>
 
-        <button type="submit">
-          <fa-icon class="iconbtn" [icon]="faArrowRight"/>
-
+        <button class="primarybtn flex items-center justify-center gap-2 " type="submit">
+          Iniciar
         </button>
       </form>
     </div>
@@ -30,3 +29,25 @@
     </a>
   </section>
 </div>
+
+
+@if(loginIssucces){
+<div class="modal_card">
+  <fa-icon [icon]=faCheck class="text-4xl text-mauve"></fa-icon>
+  <p class="text-center mb-6">Las credenciales ingresadas son correctas. Presiona en continuar para entrar al sistema</p>
+
+  <button class="primarybtn" (click)="goToMainApp()"> Continuar</button>
+</div>
+}
+
+@if(loginFail){
+<div class="modal_card">
+  <fa-icon [icon]=faXmark class="text-4xl text-redErrorColor"></fa-icon>
+  <p class="text-center mb-6">El email o la contraseña ingresada no es correcta, vuelve a intertalo</p>
+
+  <button class="primarybtn" (click)="goToReturn()">
+    <fa-icon [icon]="faRotateLeft"></fa-icon>
+    Regresar
+  </button>
+</div>
+}

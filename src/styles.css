@@ -21,6 +21,7 @@
   text-txtprimarybt
   rounded-lg
   p-2
+  hover:bg-mauve
 }
 .secondbtn{
   @apply
@@ -157,6 +158,29 @@
   border-strokeline
   rounded-lg
   px-2
+}
+ /* modals  */
+.modal_card{
+  position: absolute;
+  width: 23rem;
+  height: 15rem;
+  top: 50%;
+  left: 50%;
+  bottom: -50%;
+  transform: translate(-50%, -50%);
+
+
+  @apply
+  bg-second
+  text-ctext
+  rounded-xl
+  border
+  border-strokeline
+  p-4
+  flex
+  flex-col
+  justify-center
+  items-center
 }
 
 html, body { height: 100%; }

@@ -1,44 +1,163 @@
-<div class="card_style">
+<div class="card_style flex items-center">
 
-  <!-- @for (empres of empresa; track empresa){ -->
-  <!-- @for(ofertaEmpleo of empres.ofertaEmpleo; track ofertaEmpleo.id){ -->
-  <!-- <div class="my-2 flex items-start gap-2 md:w-1/2"> -->
-  <!--   <div class="h-12 w-12 rounded-lg bg-red-700"> -->
-  <!--     <img [src]="empres.logo" alt="logo"> -->
-  <!--   </div> -->
+  <div class="flex w-full flex-col items-center justify-center gap-6 md:w-9/12">
 
-  <!--   <div class="flex flex-col "> -->
-  <!--     <h1>{{empres.nombre}}</h1> -->
-  <!--     <a [href]="empres.sitioWeb" class="text-primarybt">Sitio Web -->
-  <!--     </a> -->
-  <!--     <span class="flex items-center gap-2"> -->
-  <!--       <fa-icon [icon]=faLocationDot></fa-icon> -->
-  <!--       {{empres.ubicacion}} -->
-  <!--     </span> -->
+    @if(noResults){
+    No encontramos resultados
+    }
 
-  <!--   </div> -->
-  <!-- </div> -->
-  <!-- <div class="h-72 max-h-72 min-h-56 overflow-y-auto rounded-lg bg-bg_second p-2 md:w-full md:max-w-full"> -->
-  <!--   <app-details [titulo]='ofertaEmpleo.titulo' [fecha]='ofertaEmpleo.fechaPublicacion' -->
-  <!--     [details]='ofertaEmpleo.descripcion' [ubicacion]='ofertaEmpleo.ubicacion' [modalidad]='ofertaEmpleo.modalidad' -->
-  <!--     [experiencia]='ofertaEmpleo.aniosDeExperiencia' [salario]='ofertaEmpleo.salario' -->
-  <!--     [vacantes]='ofertaEmpleo.vacantes'></app-details> -->
+    @if(showConfirmationDialog){
+    <div class="modal_card">
+      <fa-icon [icon]=faCircleExclamation class="text-4xl m-2 text-cyellow"></fa-icon>
+      <p class="text-center mb-6">Estas seguro que deseas postularte para
+        <strong>{{selectedOferta?.titulo}}</strong> en
+        <strong>{{selectedOferta?.empresa?.nombre}}</strong>
+      </p>
 
-  <!-- </div> -->
+      <div class="flex justify-between gap-6">
+        <button class="secondbtn"  (click)="cancelPostulacion()">
+          No, Cancelar
+        </button>
+        <button class="primarybtn" (click)="confirmPostulacion()">
+          Sí, Postular
+        </button>
+      </div>
+    </div>
 
-  <!-- <div class="mb-8 mt-2 flex justify-end gap-4"> -->
-  <!--   <button class="iconbtn" type=""> -->
-  <!--     <fa-icon [icon]=faBan></fa-icon> -->
-  <!--   </button> -->
-  <!--   <button class="iconbtn" type=""> -->
-  <!--     <fa-icon [icon]=faHeart></fa-icon> -->
-  <!--   </button> -->
-  <!--   <button class="primarybtn" type="">Postular</button> -->
-  <!-- </div> -->
+    }
 
-  <!-- <!-- <hr class="my-2 h-0.5 border-t-0 bg-strokeline" /> --> -->
+     @if(showConfirmationPostulacionDialog){
+    <div class="modal_card">
+      <fa-icon [icon]=faCheck class="text-4xl m-2 text-mauve"></fa-icon>
+      <p class="text-center mb-6"> Tu postulación se completo correctamente.
+      </p>
 
-  <!-- } -->
-  <!-- } -->
+      <div class="flex justify-between gap-6">
+        <button class="primarybtn" [routerLink]="['/connectempleo/app/choice']" (click)="goToPostulacion()">
+          Aceptar
+        </button>
+      </div>
+    </div>
+
+    }
+
+    @for(ofertaItem of filteredOfertasEmpleos; track ofertaItem.id) {
+    <div class="w-full">
+      <div class="card_lstyle p-4">
+        <div class="mb-4">
+          <span class="chips">
+            <fa-icon [icon]=faBuildingUser class="text-cyellow"></fa-icon>
+            Empresa
+          </span>
+        </div>
+        <div class="flex">
+          <div class="h-14 w-14 rounded-lg bg-green-100">
+            <img src="ofertaItem.empresa.logo" alt="logo">
+          </div>
+          <div class="ml-4 flex flex-col">
+            <h1 class="text-xl font-medium text-mauve"> {{ofertaItem.empresa.nombre}} </h1>
+            <div class="mt-4 flex gap-4">
+              <span class="chips">
+                <fa-icon [icon]=faLightbulb></fa-icon>
+                Fundado en {{ofertaItem.empresa.fechafundacion}}
+              </span>
+              <span class="chips">
+                <fa-icon [icon]=faPeopleGroup></fa-icon>
+                Empreados
+                <span class="items">{{ofertaItem.empresa.cantidadempleados}}</span>
+              </span>
+              <span class="chips">
+                <fa-icon [icon]=faBuildingCircleCheck></fa-icon>
+                Tipo
+                <span class="items">{{ofertaItem.empresa.tipo}}</span>
+              </span>
+
+            </div>
+          </div>
+        </div>
+        <p class="mt-2 flex items-center text-cblue">
+          {{ofertaItem.empresa.sitioweb}}
+          <mat-icon class="text-sm">north_east</mat-icon>
+        </p>
+        <h3 class="mb-1 mt-4 text-xl text-lavender">Descripcion de empresa</h3>
+        <div class="mb-4 rounded-md bg-idxsurface1 p-4">
+
+          <p class="text-subtext1">
+            {{ofertaItem.empresa.descripcion}}
+          </p>
+
+        </div>
+
+        <hr class="h-0.5 border-t-0 bg-strokeline" />
+        <div class="my-4">
+          <span class="chips">
+            <fa-icon [icon]=faPersonDigging class="text-sapphire"></fa-icon>
+            Oferta de empleo
+          </span>
+        </div>
+        <div class="my-4">
+          <h2 class="text-2xl text-mauve">{{ofertaItem.titulo}} </h2>
+          <div class="mt-2 flex gap-4">
+            <span class="chips">
+              <fa-icon [icon]=faLocationDot></fa-icon>
+              {{ofertaItem.ubicacion}}
+            </span>
+
+            <span class="chips">
+              <fa-icon [icon]=faDollarSign></fa-icon>
+              Salario
+              {{ofertaItem.salario}}
+            </span>
+
+            <span class="chips">
+              <fa-icon [icon]=faBriefcase></fa-icon>
+              Años experiencia
+              {{ofertaItem.aniosexperiencia}}
+            </span>
+
+            <span class="chips">
+              <fa-icon [icon]=faBuilding></fa-icon>
+              Modalidad
+              {{ofertaItem.modalidad}}
+            </span>
+
+            <span class="chips">
+              <fa-icon [icon]=faPerson></fa-icon>
+              Vacantes
+              {{ofertaItem.vacantes}}
+            </span>
+
+          </div>
+
+          <h3 class="mb-2 mt-6 text-xl">Detalles de la oferta de empleo</h3>
+          <div class="rounded-md bg-idxsurface1 p-4">
+            <p class="line-clamp-3 ">{{ofertaItem.descripcion}}</p>
+          </div>
+
+        </div>
+
+        <div class="mt-4 flex items-center justify-between text-h2secondary">
+          <div>
+            <span>
+              <fa-icon [icon]=faClock></fa-icon>
+              Publicado el
+              {{ofertaItem.fechapublicacion}}</span>
+
+          </div>
+          <div class="flex items-center gap-4">
+            <mat-icon class="icons_mauve" (click)="addFavorite()">favorite</mat-icon>
+            <button class="second_button_style bg-mauve" type="" (click)="addPostulacion(ofertaItem)">
+              Postular
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    }
+
+  </div>
   <br />
 </div>

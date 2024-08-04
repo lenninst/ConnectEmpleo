@@ -4,7 +4,7 @@ description:
 authors: kanguro
 categories:
 created: 2024-08-02T16:27:05-0500
-updated: 2024-08-02T16:46:15-0500
+updated: 2024-08-03T17:21:21-0500
 version: 1.1.1
 @end
 
@@ -35,4 +35,9 @@ version: 1.1.1
   - fecha_inicio
   - fecha_fin
   - descripcion
+
+
+   hola como estas
+    esto bien y tu ?
+   holaldd
 
