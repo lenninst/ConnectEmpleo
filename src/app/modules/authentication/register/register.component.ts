@@ -1,6 +1,3 @@
-/**
- * @module
- */
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -8,10 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { AccountService } from '../../../services/account.service';
 import { first } from 'rxjs';
 import { FieldValidationServices } from '../../../services/fieldsvalidation.services';
+import { UserService } from '../../../services/user.services';
+
+import { faArrowRight, faCheck, faXmark, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 interface FormModel {
   userName: string;
@@ -35,21 +33,29 @@ interface FormModel {
 })
 export class RegisterComponent {
   faArrowRight = faArrowRight;
+  faCheck = faCheck;
+  faXmark = faXmark;
+  faRotateLeft = faRotateLeft;
 
   termsAccepted: boolean = false;
   asyncValidator: any | string;
+  registerIssucces: boolean = false;
+  registerFail: boolean = false;
 
   form!: FormGroup;
   submitted: boolean = false;
   loading: boolean = false;
+  userTypes = [
+    { value: 'empleado', label: 'Empleado' },
+    { value: 'CANDIDATO', label: 'CANDIDATO' },
+
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService,
     private fieldsValidation: FieldValidationServices,
-    // private alertService: AlertService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -57,118 +63,97 @@ export class RegisterComponent {
       userName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required, Validators.minLength(6), [this.asyncValidator]],
-      termsAccepted: [false, Validators.requiredTrue]
-
+      termsAccepted: [false, Validators.requiredTrue],
+      userType: ['', Validators.required]
     });
   }
 
-  /**
-   * obtener validadores
-   * @returns {[K in keyof FormModel]: AbstractControl}
-   */
   get fieldsValidator(): { [K in keyof FormModel]: AbstractControl } {
     return this.form.controls as { [K in keyof FormModel]: AbstractControl };
   }
 
-  /**
-  * @returns {AbstractControl}
-   */
   get f() {
     return this.form.controls;
 
   }
 
-  /**
-   * envio de formulario
-   */
   onSubmit() {
     this.submitted = true;
 
+    if(this.form.invalid){
+      return console.log("error al enviar formulario", this.form.value);
+    }
+
     if (this.form.invalid) {
-      return console.log("Eror: no se envio el formulario");
+      return console.log("Error: no se envió el formulario");
     }
 
     if (this.form.get('termsAccepted')?.value) {
-      console.log("Acepto los terminao");
+      console.log("Acepto los términos");
     } else {
-      console.log("no se acepto los termino")
+      console.log("No se aceptaron los términos");
+      return;
     }
 
     this.loading = true;
 
-    // this.alertService.clear();
-
-    if (this.form.invalid) {
-      return console.log("Eror: no se envio el formulario");
-    }
-
-    this.loading = true;
-
-    this.accountService.register(this.form.value)
+    this.userService.registerUser(this.form.value)
       .pipe(first())
       .subscribe({
         next: () => {
-          // Acción después de que el registro sea exitoso
-          this.router.navigate(['/login'], { relativeTo: this.route });
+          this.registerIssucces = true;
         },
         error: error => {
-          // Manejo de errores durante el registro
-          this.loading = false; // Detener el indicador de carga
+          this.loading = false;
+          this.registerFail = true;
+          console.error('Error al registrar el usuario', error);
         }
       });
 
-    console.log("se envio el formulario ");
+    console.log("Se envió el formulario");
     console.log(this.form.value);
-
-
   }
 
-  /**
-  * Validar campos
-   * @param controlName - nombre del campo
-   * @returns {string} - placeholder
-  * @returns {string} - mensaje de error
-   * @returns
-   */
-  getPlaceholder(controlName: string): string {
-    if (this.submitted && this.f[controlName].errors) {
-      if (this.f[controlName].hasError('required')) {
-        switch (controlName) {
-          case 'userName':
-            return 'Usuario es obligatorio';
-          case 'email':
-            return 'Email es obligatorio';
-          case 'password':
-            return 'Contraseña es obligatorio';
-          default:
-            return `Ingresar ${controlName}`;
-        }
-      }
-
-      if (controlName === 'email' && !this.fieldsValidation.validateEmail(this.f[controlName].value)) {
-        return 'Email no es válido';
-      }
-      if (controlName === 'password' && this.f[controlName].hasError('minlength')) {
-        return 'La contraseña debe tener al menos 6 caracteres';
+getPlaceholder(controlName: string): string {
+  if (this.submitted && this.f[controlName].errors) {
+    if (this.f[controlName].hasError('required')) {
+      switch (controlName) {
+        case 'userName':
+          return 'Usuario es obligatorio';
+        case 'email':
+          return 'Email es obligatorio';
+        case 'password':
+          return 'Contraseña es obligatorio';
+        default:
+          return `Ingresar ${controlName}`;
       }
     }
-    return controlName.charAt(0).toUpperCase() + controlName.slice(1); // Capitaliza el nombre del campo
+
+    if (controlName === 'email' && !this.fieldsValidation.validateEmail(this.f[controlName].value)) {
+      return 'Email no es válido';
+    }
+    if (controlName === 'password' && this.f[controlName].hasError('minlength')) {
+      return 'La contraseña debe tener al menos 6 caracteres';
+    }
+  }
+  return controlName.charAt(0).toUpperCase() + controlName.slice(1);
+}
+
+termsAcceptedChecked(): boolean {
+  return this.form.get('termsAccepted')?.value === true;
+}
+
+getClasses(controlName: string) {
+  return this.fieldsValidation.getValidationClassName(this.form, controlName, this.submitted);
+}
+
+  goToLogin(){
+    this.router.navigate(['/login'])
   }
 
-  termsAcceptedChecked(): boolean {
-    return this.form.get('termsAccepted')?.value === true;
+  goToReturn(){
+    this.registerFail = false;
   }
-
-  /**
-  * Obtener clases dinamicas
-   * @param controlName - nombre del campo
-   * @returns
-   */
-  getClasses(controlName: string) {
-    return this.fieldsValidation.getValidationClassName(this.form, controlName, this.submitted);
-  };
-
-
 }
 
 

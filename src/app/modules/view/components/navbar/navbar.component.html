@@ -7,7 +7,7 @@
       </div>
 
       <form class="form_style" (submit)="search()">
-        <input class="search_input " type="text" (ngModel)="termino" placeholder="🔍 Buscar" name="searchTerm">
+        <input class="search_input " type="text" [(ngModel)]="termino" placeholder="🔍 Buscar" name="searchTerm">
       </form>
       <div class="flex gap-6">
         <fa-icon [icon]="faBell"></fa-icon>

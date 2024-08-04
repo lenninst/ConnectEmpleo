@@ -7,7 +7,10 @@ import { first } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FieldValidationServices } from '../../../services/fieldsvalidation.services';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from '../../../services/user.services';
+import { UserLoginRequest } from '../../../core/interfaces/request/userLoginRequest.interface';
+
+import { faArrowRight, faCheck, faXmark, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -26,18 +29,23 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 export class LoginComponent {
 
   faArrowRight = faArrowRight;
+  faCheck = faCheck;
+  faXmark = faXmark;
+  faRotateLeft = faRotateLeft;
 
   form!: FormGroup;
   loading = false;
   submitted = false;
 
+  loginIssucces: boolean = false;
+  loginFail: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService,
     private fieldsValidation: FieldValidationServices,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
@@ -50,12 +58,12 @@ export class LoginComponent {
 
   get f() { return this.form.controls }
 
- onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
 
     if (this.form.invalid) {
-        console.log('Formulario inválido');
-        return;
+      console.log('Formulario inválido');
+      return;
     }
 
     this.loading = true;
@@ -63,20 +71,28 @@ export class LoginComponent {
     const email = this.form.get('email')?.value ?? '';
     const password = this.form.get('password')?.value ?? '';
 
-    this.accountService.login(email, password)
-        .pipe(first())
-        .subscribe({
-            next: () => {
-                const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/connetempleo';
-                this.router.navigateByUrl(returnUrl);
-            },
-            error: error => {
-                console.error("No se pudo iniciar sesión ", error);
-                // this.alertService.error(error);
-                this.loading = false;
-            }
-        });
-}
+    const userData: UserLoginRequest = {email, password};
+
+    console.log('Iniciando sesión' , userData);
+
+    this.userService.loginUser(userData)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.loginIssucces = true;
+
+          console.log('Sesión iniciada');
+          // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/connetempleo';
+          // this.router.navigateByUrl(returnUrl);
+        },
+        error: error => {
+          console.error("No se pudo iniciar sesión ", error);
+          this.loginFail = true;
+          // this.alertService.error(error);
+          this.loading = false;
+        }
+      });
+  }
 
 
 
@@ -97,7 +113,7 @@ export class LoginComponent {
         return 'Email no es válido';
       }
       if (controlName === 'password' && this.f[controlName].hasError('minlength')) {
-        return 'La cstringontraseña debe tener al menos 6 caracteres';
+        return 'La contraseña debe tener al menos 6 caracteres';
       }
     }
     return controlName.charAt(0).toUpperCase() + controlName.slice(1); // Capitaliza el nombre del campo
@@ -115,5 +131,14 @@ export class LoginComponent {
     return this.fieldsValidation.getValidationClassName(this.form, controlName, this.submitted);
   }
 
+  goToReturn(){
+    this.loginFail = false;
+  }
+
+  goToMainApp(){
+
+    this.router.navigate(['/connectempleo'])
+
+  }
 
 }

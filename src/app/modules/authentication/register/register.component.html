@@ -1,20 +1,28 @@
-<div class="text-white w-screen h-screen flex flex-col justify-center items-center">
+<div class="flex h-screen w-screen flex-col items-center justify-center text-white">
   <div class="text-center">
-    <h1 class="font-semibold text-3xl ">Crear cuenta</h1>
+    <h1 class="text-3xl font-semibold ">Crear cuenta</h1>
 
     <div class="w-74 mt-10">
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 ">
-        <input class="input_style" type="text" formControlName="userName" [ngClass]="getClasses('userName')" value=""
+        <input class="input_style" type="text" formControlName="userName" [ngClass]="getClasses('userName')"
           [placeholder]="getPlaceholder('userName')">
 
-        <input class="input_style" type="email" formControlName="email" value="" [ngClass]="getClasses('email')"
+        <input class="input_style" type="email" formControlName="email" [ngClass]="getClasses('email')"
           [placeholder]="getPlaceholder('email')">
 
-        <input class="input_style" type="password" formControlName="password" value=""
-          [ngClass]="getClasses('password')" [placeholder]="getPlaceholder('password')">
+        <input class="input_style" type="password" formControlName="password" [ngClass]="getClasses('password')"
+          [placeholder]="getPlaceholder('password')">
+
         <div class="mb-3">
 
-          <label class="inline-flex items-center">
+          <select class="input_style text-cyellow" id="rol" formControlName="userType">
+            <option value='' disabled selected>Selecciona un rol</option>
+            @for(rol of userTypes; track rol){
+            <option [value]="rol.value">{{rol.value}}</option>
+            }
+          </select>
+
+          <label class="mt-4 inline-flex items-center">
             <input class="" type="checkbox" formControlName="termsAccepted">
             <span class="ml-1">
               Acepto los
@@ -33,9 +41,10 @@
 
 
     </div>
+
     @if(submitted && !termsAcceptedChecked()){
 
-    <p class="text-redErrorColor mt-4 w-64">*Acepta los terminos y condiciones</p>
+    <p class="mt-4 w-64 text-redErrorColor">*Acepta los terminos y condiciones</p>
 
     }
 
@@ -47,3 +56,25 @@
     </a>
   </section>
 </div>
+
+
+@if(registerIssucces){
+<div class="modal_card">
+  <fa-icon [icon]=faCheck class="text-4xl text-mauve"></fa-icon>
+  <p class="text-center mb-6">Se registro correctamente porfavor presione en continuar para iniciar sesion</p>
+
+  <button class="primarybtn" (click)="goToLogin()"> Continuar</button>
+</div>
+}
+
+@if(registerFail){
+<div class="modal_card">
+  <fa-icon [icon]=faXmark class="text-4xl text-redErrorColor"></fa-icon>
+  <p class="text-center mb-6">Parece que sucedió un error porfavor intentalo de nuevo</p>
+
+  <button class="primarybtn" (click)="goToReturn()">
+    <fa-icon [icon]="faRotateLeft"></fa-icon>
+    Regresar
+  </button>
+</div>
+}

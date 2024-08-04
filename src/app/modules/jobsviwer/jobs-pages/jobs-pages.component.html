@@ -14,7 +14,7 @@
         placeholder="Buscar un trabajo">
     </div>
 
-    <button class="primarybtn  " routerLink="login">
+    <button class="primarybtn" [routerLink]="['/login']">
       Iniciar Sesión
     </button>
   </div>
@@ -30,7 +30,7 @@
 
   @if(!noResults) {
   <div class="flex w-full flex-col items-center  justify-center gap-5 px-4 md:w-9/12 ">
-    @for(ofertaItem of filteredOfertasEmpleos; track filteredOfertasEmpleos) {
+    @for(ofertaItem of filteredOfertasEmpleos; track ofertaItem.id) {
     <div class="w-full">
       <div class="card_lstyle p-4">
         <div class="mb-4">

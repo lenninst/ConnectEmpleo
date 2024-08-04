@@ -9,14 +9,14 @@ import { OfertaEmpleoService } from '../../../services/ofertaEmpleo.services';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { faLocationDot, faPersonDigging, faDollarSign, faPeopleGroup, faBuildingUser, faBuildingCircleCheck, faBuilding, faBriefcase, faLightbulb, faPerson, faClock } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-jobs-pages',
   standalone: true,
   templateUrl: './jobs-pages.component.html',
   styleUrl: './jobs-pages.component.css',
-  imports: [FormsModule, MatIconModule, CommonModule, FontAwesomeModule, ReactiveFormsModule],
+  imports: [RouterModule, FormsModule, MatIconModule, CommonModule, FontAwesomeModule, ReactiveFormsModule],
   providers: []
 })
 

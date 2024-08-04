@@ -28,7 +28,8 @@ module.exports = {
         cyellow : '#eed49f',
         sapphire : '#7dc4e4',
         idxsurface : '#171f2b',
-        idxsurface1 : '#202834'
+        idxsurface1 : '#202834',
+        cgreen : '#a6da95'
       },
     },
   },
