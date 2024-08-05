@@ -1,0 +1,13 @@
+* Crear candidatoService
+  Planes de Domingo 08/04/2024
+  - (x) Crear servicioCandidato
+  - (x) consumir servicioCandidato
+  - (-) adaptar disenio
+* Postulaciones 04/08/2024
+  - (-) Cambiar los estados a 
+  -- pendiente 
+  -- aceptado 
+  -- rechazado 
+  - (-) crear ServivioPostulacion
+  - (-) Consumir ServicioPostulcion
+
