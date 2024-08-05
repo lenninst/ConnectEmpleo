@@ -11,6 +11,9 @@ import { OfertaEmpleoService } from '../../../../services/ofertaEmpleo.services'
 import { faCheck, faLocationDot, faHeart, faBan, faBuildingUser, faLightbulb, faDollarSign, faBuilding, faBriefcase, faPerson, faClock, faPeopleGroup, faBuildingCircleCheck, faPersonDigging, faCircleExclamation, faC, } from '@fortawesome/free-solid-svg-icons';
 import { SharedService } from '../../../../services/Shared.Service';
 import { Subscription } from 'rxjs';
+import { PostulacionRequest } from '../../../../core/interfaces/request/postulacionRequest.interface';
+import { PostulacionService } from '../../../../services/postulacion.services';
+import { CandidatoService } from '../../../../services/candidato.services';
 
 @Component({
   selector: 'app-cards',
@@ -41,15 +44,19 @@ export class CardsComponent {
   error: string | null = null;
   noResults: boolean = false;
   selectedOferta: Ofertas | null = null;
+  postulacion: PostulacionRequest | null = null;
 
   showConfirmationDialog: boolean = false;
   showConfirmationPostulacionDialog: boolean = false;
 
   private searchSubscription: Subscription = new Subscription();
+  // private candidatoSubcription: Subscription = new Subscription();
 
   constructor(
     private ofertasEmpleosService: OfertaEmpleoService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private postulacionService: PostulacionService,
+    private candidatoService: CandidatoService
 
   ) { }
 
@@ -92,22 +99,48 @@ export class CardsComponent {
 
   addPostulacion(oferta: Ofertas): void {
     this.selectedOferta = oferta;
-    this.showConfirmationDialog = true;
 
+    this.showConfirmationDialog = true;
     console.log(oferta);
 
   }
 
-  cancelPostulacion(){
+  cancelPostulacion() {
     this.showConfirmationDialog = false;
   }
 
-  confirmPostulacion(){
-    this.showConfirmationDialog = false;
-    this.showConfirmationPostulacionDialog = true;
-  }
+  confirmarPostulacion(): void {
+    if (this.selectedOferta) {
+      const candidatoId = this.candidatoService.getCandidatoId();
 
-  goToPostulacion(){
+      console.log(candidatoId);
+      console.log(this.selectedOferta);
+      if (candidatoId) {
+        const postulacion: PostulacionRequest = {
+          candidatosFk: candidatoId,
+          ofertasEmpleosFk: this.selectedOferta.id,
+          estadoPostulacion: "pendiente"
+        }
+
+        this.postulacionService.postularOferta(postulacion).subscribe({
+          next: (response) => {
+            console.log('Postulación exitosa', response);
+            this.showConfirmationPostulacionDialog = true;
+            this.showConfirmationDialog = false;
+          },
+          error: (error) => {
+            console.error('Error en la postulación', error);
+            this.error = 'Ocurrió un error al realizar la postulación';
+          }
+        });
+      } else {
+        this.error = 'no se pudo obtener el Id del candidato'
+      }
+    }else {
+      this.error = 'No se ha seleccionado ninguna oferta'
+    }
+  }
+  goToPostulacion() {
 
   }
 

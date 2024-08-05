@@ -13,6 +13,8 @@ import { ProfileEditModalComponent } from '../candidateModal/profile-edit-modal/
 import { AcademicEduComponent } from '../Cards/academic-edu/academic-edu.component';
 import { WorkExperienceComponent } from '../Cards/work-experience/work-experience.component';
 import { AcademiEduAddModalComponent } from '../candidateModal/academi-edu-add-modal/academi-edu-add-modal.component';
+import { CandidatoService } from '../../../../../services/candidato.services';
+import { CandidatoData } from '../../../../../core/interfaces/response/candidatoResponse.interface';
 
 @Component({
   selector: 'app-candidate-profile',
@@ -38,31 +40,65 @@ export class CandidateProfileComponent {
   faPen = faPen;
   faPlus = faPlus;
 
+  User: Usuario = mockUser;
+  candidatoData: CandidatoData | null = null;
+  error: string | null = null;
 
-  constructor(private router: Router, private location:Location) { }
-    User: Usuario = mockUser;
+  constructor(
+    private router: Router,
+    private location: Location,
+    private candidatoService: CandidatoService
+  ) { }
+
+
+  ngOnInit() {
+    this.loadCandidatoData();
+  }
+
+  loadCandidatoData() {
+    const userFk = this.candidatoService.getUserFk();
+    if (userFk) {
+      this.candidatoService.fetchCandidatoByFk(userFk).subscribe({
+        next: (response) => {
+          if (response.isSuccess) {
+            this.candidatoData = response.data;
+          } else {
+            this.error = 'No se pudo cargar informacion del candidato';
+          }
+        },
+        error: (err) => {
+          console.log('Error el acragra todos los datos', err);
+          this.error = 'Ocurrio un error al cargar los datos';
+        }
+      });
+    } else {
+      this.error = 'No se encontro el Id de usurio';
+    }
+
+  }
+
   goToDashboard() {
     console.log("cicl en regresar")
 
     this.router.navigate(['/user/mainView'])
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
   }
 
   showUserEditModal = false;
-  openEditModal(){
+  openEditModal() {
     console.log("abrir modal para editar")
     this.showUserEditModal = true;
   }
 
-  closeUserEditModal () {
+  closeUserEditModal() {
     this.showUserEditModal = false;
   }
 
   showAddAcademicModal = false;
-  AddAcademicModal (){
+  AddAcademicModal() {
     console.log("abrir modal para agregar academicos")
     this.showAddAcademicModal = true;
   }

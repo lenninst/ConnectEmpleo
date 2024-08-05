@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { Usuario } from '../../../../../../core/interfaces/User.interface';
-import { mockUser } from '../../../../../../shared/mock-data/mock-user';
+import { Component, Input } from '@angular/core';
+import { CandidatoData } from '../../../../../../core/interfaces/response/candidatoResponse.interface';
 
 @Component({
   selector: 'app-personal-information',
@@ -11,6 +10,7 @@ import { mockUser } from '../../../../../../shared/mock-data/mock-user';
 })
 export class PersonalInformationComponent {
 
-  User : Usuario = mockUser;
+  @Input() datos!: CandidatoData;
 
+  constructor(){}
 }

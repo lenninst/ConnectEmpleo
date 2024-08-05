@@ -1,13 +1,14 @@
 .user_modal_content {
   @apply
-  size-52 
-  rounded-lg 
-  gap-2 
-  p-2 
-  bg-opacity-90 
-  backdrop-blur-lg 
+  size-52
+  rounded-lg
+  gap-2
+  p-2
+  bg-main 
+  /* bg-opacity-90 */
+  /* backdrop-blur-xl */
   border
-  border-strokeline 
+  border-strokeline
   text-h1primary
 
 }

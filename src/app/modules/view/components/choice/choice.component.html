@@ -1,36 +1,40 @@
-<div class="w-screen px-4">
+<div class="w-screen flex justify-center px-4">
 
-  @for(postulacion of user.postulaciones; track user.postulaciones){
+  <div class="bg-green-600 h-5 w-full md:w-9/12">
+    @for(postulacionItem of postulaciones; track postulacionItem.id){
 
-  <div class=" w-full flex flex-col gap-4 justify-center items-center bg-bg_second p-3 rounded-lg mb-4 ">
-    <div class="w-full flex border-b py-2 border-slate-800">
-      <div class=" min-w-max max-w-max flex flex-col py-2 ">
-        <h2>{{postulacion.establecimiento}}</h2>
-        <h1 class="text-h1primary font-semibold">
-          {{postulacion.puesto}}
+    <div class=" w-full flex flex-col gap-4 justify-center items-center bg-bg_second p-3 rounded-lg mb-4 ">
+      <div class="w-full flex border-b py-2 border-slate-800">
+        <div class=" min-w-max max-w-max flex flex-col py-2 ">
+          <h2>{{postulacionItem.ofertaEmpleo.titulo}}</h2>
+          <h1 class="text-h1primary font-semibold">
+            {{postulacionItem.ofertaEmpleo.empresa}}
+          </h1>
+          <p>{{postulacionItem.ofertaEmpleo.descripcion}}</p>
+        </div>
+
+      </div>
+
+      <div class="w-full flex justify-between ">
+        <h1 class="mr-3">
+          <fa-icon [icon]="postulacionItem.estadoPostulacion | statusIcon"></fa-icon>
+          {{postulacionItem.estadoPostulacion}}
         </h1>
-        <p>{{postulacion.descripcion}}</p>
+        <div class="flex gap-4">
+          <button type="">Detalles</button>
+          <button class="iconbtn" (click)="deletePostulacion(postulacionItem)">
+            <fa-icon [icon]="faTrash"></fa-icon>
+            Cancelar
+          </button>
+
+        </div>
       </div>
 
     </div>
 
-    <div class="w-full flex justify-between ">
-      <h1 class="mr-3">
-        <fa-icon [icon]="postulacion.estado | statusIcon"></fa-icon>
-        {{postulacion.estado}}
-      </h1>
-      <div class="flex gap-4">
-        <button type="">Detalles</button>
-        <button class="iconbtn" type="">
-          <fa-icon [icon]="faTrash"></fa-icon>
-          Cancelar
-        </button>
+    }
 
-      </div>
-    </div>
 
   </div>
-
-  }
 
 </div>

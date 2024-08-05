@@ -29,8 +29,8 @@
 
   <section class="flex flex-col items-center justify-center">
     <div class="w-5/6 grid  grid-rows-2 md:grid-cols-2 gap-2 h-80 md:h-32 ">
-      <app-personal-information></app-personal-information>
-      <app-contact-information></app-contact-information>
+      <app-personal-information [datos]="candidatoData!"></app-personal-information>
+      <app-contact-information [datos]="candidatoData!"></app-contact-information>
     </div>
     <div class="mt-3 w-full">
       <hr class="w-full h_divider">
