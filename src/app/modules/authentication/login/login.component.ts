@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { AccountService } from '../../../services/account.service';
 import { first } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FieldValidationServices } from '../../../services/fieldsvalidation.services';
